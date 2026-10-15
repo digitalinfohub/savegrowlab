@@ -5,9 +5,78 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07111f">
-  <meta name="description" content="SaveGrow Lab provides free, practical financial calculators, budgeting guides, and beginner investing education to help you save smarter and grow steadily.">
-  <meta name="author" content="SaveGrow Lab Editorial Team">
-  <title>SaveGrow Lab | Save smarter. Grow steadily.</title>
+  <title>SaveGrow Lab — Free Savings Calculators, Budgeting Tools & Money Guides (UK)</title>
+  <meta name="description" content="Free UK money tools that run privately in your browser: savings goal calculator, compound interest estimator, 50/30/20 budget planner, trip budget and emergency fund checkers, plus beginner-friendly saving and investing guides.">
+  <meta name="author" content="SaveGrow Lab Editorial Team (Digital Infohub)">
+  <link rel="canonical" href="https://savegrowlab.co.uk/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SaveGrow Lab">
+  <meta property="og:url" content="https://savegrowlab.co.uk/">
+  <meta property="og:title" content="SaveGrow Lab — Free Savings Calculators, Budgeting Tools & Money Guides (UK)">
+  <meta property="og:description" content="Free, private, in-browser money calculators and beginner-friendly UK guides on saving, budgeting and investing. No account required.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SaveGrow Lab — Free Savings Calculators & Money Guides">
+  <meta name="twitter:description" content="Free, private, in-browser money calculators and beginner-friendly UK guides on saving, budgeting and investing.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234ca9ff'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%2306111f'%3ESG%3C/text%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://savegrowlab.co.uk/#website",
+        "url": "https://savegrowlab.co.uk/",
+        "name": "SaveGrow Lab",
+        "description": "Free financial calculators, budgeting tools and beginner money education for UK savers.",
+        "publisher": { "@id": "https://savegrowlab.co.uk/#organization" },
+        "inLanguage": "en-GB"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://savegrowlab.co.uk/#organization",
+        "name": "SaveGrow Lab",
+        "url": "https://savegrowlab.co.uk/",
+        "email": "services@digitalinfohub.net",
+        "description": "Independent personal-finance education platform publishing free in-browser calculators and written guides on saving, budgeting and investing for a UK audience."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is SaveGrow Lab financial advice?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. The site provides general education and illustrative calculations only. It does not give personalised financial advice; for recommendations tailored to your circumstances, consult a qualified professional." }
+          },
+          {
+            "@type": "Question",
+            "name": "Are the calculators exact?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. They are planning tools based on simplified assumptions such as constant rates and regular monthly contributions. Real-world interest rates, platform fees, tax and market returns will differ from these estimates." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use the tools on mobile?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The layout, calculators and guides are fully responsive and designed to work on phones, tablets and desktops." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you collect my financial data?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. There is no account or form to fill in, and every calculator runs locally in your browser. The numbers you type are never sent to our servers. Third-party advertising may use cookies as described in our Privacy Policy." }
+          },
+          {
+            "@type": "Question",
+            "name": "How accurate is the compound interest calculator?",
+            "acceptedAnswer": { "@type": "Answer", "text": "It applies a constant annual rate compounded monthly with fixed monthly contributions. That is a good approximation for cash savings and regular investing plans, but actual returns vary and investments can fall as well as rise." }
+          },
+          {
+            "@type": "Question",
+            "name": "How much should a UK beginner aim to keep as an emergency fund?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A common starting target is one month of essential costs, building gradually towards three to six months. Self-employed people or those with variable income often aim higher. Use the Emergency Fund tool to convert that target into a monthly saving amount." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <style>
     :root{
       --bg:#06111f; --bg-soft:#091729; --panel:rgba(13,27,45,.86); --panel-2:rgba(16,36,58,.8);
@@ -173,6 +242,24 @@
     .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.tab{border:1px solid var(--line);background:rgba(255,255,255,.045);color:#9fb2c6;border-radius:9px;padding:8px 11px;font-weight:750;font-size:12px; transition: 0.2s;}
     .tab.active{color:#dff9ff;border-color:rgba(103,232,249,.28);background:rgba(103,232,249,.08)}
 
+    /* FOOTER LINKS */
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+
+    /* TOPIC HUB NAV + INLINE TOOL BUTTONS */
+    .hub-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+    .hub-nav a{font-size:13px;font-weight:750;color:#ccecff;border:1px solid rgba(87,170,248,.22);background:rgba(87,170,248,.09);padding:9px 13px;border-radius:999px;transition:.2s}
+    .hub-nav a:hover{background:rgba(87,170,248,.18)}
+    .inline-tool-btn{border:none;background:none;color:var(--cyan);font-weight:800;padding:0;font-size:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+    .inline-tool-btn:hover{color:#a5f3fc}
+
+    /* SKIP LINK (ACCESSIBILITY) */
+    .skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:#0b1e33;color:#fff;padding:10px 14px;border-radius:0 0 10px 0}
+    .skip-link:focus{left:0}
+
+    /* MODERN RESET SUPPORT */
+    details summary > div { display:inline; }
+    details summary::marker { content: ""; }
+
     @media(max-width:930px){
       .hero{grid-template-columns:1fr}.hero{padding-top:62px}
       .cards{grid-template-columns:1fr 1fr}.faq{grid-template-columns:1fr}
@@ -195,10 +282,11 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
   <header class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#top" aria-label="SaveGrow Lab home">
-        <span class="brand-mark">SG</span>
+      <a class="brand" href="/" aria-label="SaveGrow Lab home">
+        <span class="brand-mark" aria-hidden="true">SG</span>
         <span>Save<span>Grow</span> Lab</span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
@@ -206,10 +294,12 @@
         <a href="#save">Save</a>
         <a href="#grow">Grow</a>
         <a href="#guides">Guides</a>
+        <a href="/glossary.html">Glossary</a>
         <a href="#about">About</a>
+        <a href="#contact-us">Contact</a>
       </nav>
       <button class="nav-cta" onclick="openTool('savings')">Open Calculator</button>
-      <button class="menu" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+      <button class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleMenu(this)">☰</button>
     </div>
   </header>
 
@@ -234,7 +324,6 @@
         <!-- YOUR SQUARE AD PLACEMENT (High Viewability) -->
         <div class="ad-container">
           <span class="ad-label">Advertisement</span>
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5443646750699471" crossorigin="anonymous"></script>
           <!-- Display manual 2026 square -->
           <ins class="adsbygoogle"
                style="display:block"
@@ -247,9 +336,9 @@
           </script>
         </div>
 
-        <div class="dashboard" aria-label="Illustrative savings dashboard">
+        <div class="dashboard" role="img" aria-label="Illustrative example of a savings plan dashboard showing a holiday fund at 68 percent of a 1,500 pound goal">
           <div class="dash-top">
-            <div><div class="dash-label">Example money plan</div><div class="dash-title">Holiday fund</div></div>
+            <div><div class="dash-label">Example money plan (illustrative)</div><div class="dash-title">Holiday fund</div></div>
             <span class="pill">On track</span>
           </div>
           <div class="dash-main">
@@ -384,15 +473,25 @@
     <section id="guides" style="background: rgba(255,255,255,0.01);">
       <div class="wrap">
         <div class="section-head">
-          <div><div class="kicker">Guides & Articles</div><h2>Short reads for real-life money.</h2></div>
-          <p>In-depth, beginner-friendly explanations. Click to expand and read. No page-hopping, no long financial jargon, just actionable insights.</p>
+          <div><div class="kicker">Guides & Articles</div><h2>Practical money guides for real life.</h2></div>
+          <p>In-depth, beginner-friendly explanations written by our editorial team and checked against official UK sources. Expand a guide to read it here, or open the full standalone page for every guide.</p>
         </div>
-        
-        <!-- CRAWLABLE WIDGET ARTICLES: Uses <details> so Googlebot reads the text, but UI stays clean like a widget -->
+
+        <!-- TOPIC HUB: links each short explainer to its full guide and the matching calculator -->
+        <nav class="hub-nav" aria-label="Money basics topic hub">
+          <a href="#tools">🧮 All calculators</a>
+          <a href="/guides/how-to-save-money.html">💰 Saving guide</a>
+          <a href="/guides/compound-interest-explained.html">📈 Compound growth guide</a>
+          <a href="/guides/emergency-fund-uk.html">🛟 Emergency fund guide</a>
+          <a href="/guides/investing-for-beginners-uk.html">🌱 Investing guide</a>
+          <a href="/guides/isa-vs-savings-account-uk.html">⚖️ ISA vs savings</a>
+          <a href="/glossary.html">📖 Money glossary</a>
+        </nav>
+
         <details class="article-widget" open>
           <summary>
             <div>
-              <div class="article-meta">5 min read · Budgeting</div>
+              <div class="article-meta">Guide · Budgeting</div>
               Easy ways to save without making life miserable
             </div>
           </summary>
@@ -404,13 +503,14 @@
             <p>Moving a manageable amount to savings after payday can make saving happen before discretionary spending. A smaller amount you can repeat consistently is usually more useful than an unrealistic target you abandon after two months.</p>
             <h4>3. Give the money a job</h4>
             <p>“Save more” is vague and unmotivating. “Save £600 for a trip to Japan” is measurable and specific. Named goals make it easier to decide whether a random purchase is competing with something truly important to you.</p>
+            <p><strong>Go deeper:</strong> <a href="/guides/how-to-save-money.html">Read the full saving plan guide</a> — including worked examples and the maths behind monthly targets — or plug your numbers into the <button class="inline-tool-btn" onclick="openTool('savings')">Savings Goal calculator</button>.</p>
           </div>
         </details>
 
         <details class="article-widget">
           <summary>
             <div>
-              <div class="article-meta">3 min read · Psychology</div>
+              <div class="article-meta">Guide · Psychology</div>
               The £5 pricing heuristic explained
             </div>
           </summary>
@@ -420,13 +520,29 @@
             <p>People often assess purchases one at a time: “It is only £3.” Repeating that thought across several items makes the final total easy to underestimate. A basket-level estimate changes the question to: “Am I happy spending roughly this much today?”</p>
             <h4>The limitation</h4>
             <p>This is a heuristic, not a precise budgeting method for major purchases. Use actual prices and the trip budget calculator when the exact amount matters. The useful part is simply having a quick mental benchmark for everyday shopping.</p>
+            <p><strong>Try it:</strong> open the <button class="inline-tool-btn" onclick="openTool('five')">£5 Basket tool</button>, or see how a weekly habit adds up over a year in the <a href="/guides/how-to-save-money.html">saving plan guide</a>.</p>
           </div>
         </details>
 
         <details class="article-widget">
           <summary>
             <div>
-              <div class="article-meta">6 min read · Investing</div>
+              <div class="article-meta">Guide · Growth</div>
+              Why compound interest is worth understanding
+            </div>
+          </summary>
+          <div class="article-content">
+            <p>Compound interest means you earn returns not just on the money you put in, but also on the returns you have already earned. Early years look slow; later years accelerate. That is why starting sooner with smaller amounts can beat starting later with larger ones.</p>
+            <h4>The catch</h4>
+            <p>Compounding works in both directions: debt interest compounds too, and investment returns are never guaranteed. Rates change, fees reduce net returns, and tax treatment depends on the wrapper you use (such as an ISA in the UK).</p>
+            <p><strong>Go deeper:</strong> <a href="/guides/compound-interest-explained.html">Read the full compound interest guide</a> with worked examples, or model your own numbers in the <button class="inline-tool-btn" onclick="openTool('interest')">Interest &amp; Growth calculator</button>.</p>
+          </div>
+        </details>
+
+        <details class="article-widget">
+          <summary>
+            <div>
+              <div class="article-meta">Guide · Investing</div>
               Investing options explained for beginners
             </div>
           </summary>
@@ -438,6 +554,7 @@
             <p>Funds can hold many investments at once. Broad market funds can make diversification easier, while fees and the fund's underlying holdings still matter. Always check the ongoing charges figure (OCF).</p>
             <h4>Before investing</h4>
             <p>Consider your time horizon, emergency savings, diversification, fees, and how much loss you could tolerate. The right mix depends on individual circumstances, which this general-purpose educational site cannot assess.</p>
+            <p><strong>Go deeper:</strong> <a href="/guides/investing-for-beginners-uk.html">The full beginner investing guide</a>, <a href="/guides/isa-vs-savings-account-uk.html">ISA vs savings account comparison</a>, and official guidance from <a href="https://www.moneyhelper.org.uk/en/everyday-money/investing/investing-basics" target="_blank" rel="noopener noreferrer nofollow">MoneyHelper</a> and the <a href="https://www.fca.org.uk/consumers/investing-stocks-shares-start-guide" target="_blank" rel="noopener noreferrer nofollow">FCA</a>.</p>
           </div>
         </details>
 
@@ -446,6 +563,8 @@
           <details class="faq-item"><summary>Are the calculators exact?</summary><p>No. They are planning tools. Interest calculations use simplified assumptions. Real-world interest rates, platform fees, and market returns will differ from these illustrative models.</p></details>
           <details class="faq-item"><summary>Can I use the tools on mobile?</summary><p>Yes. The layout, calculators, and article widgets are fully responsive and designed to work seamlessly on smaller screens.</p></details>
           <details class="faq-item"><summary>Do you collect my financial data?</summary><p>No. We do not require an account, and all calculators run locally in your browser using JavaScript. Your inputs are never sent to our servers.</p></details>
+          <details class="faq-item"><summary>How accurate is the compound interest calculator?</summary><p>It applies a constant annual rate compounded monthly with fixed monthly contributions. That is a good approximation for cash savings and regular investing plans, but actual returns vary and investments can fall as well as rise.</p></details>
+          <details class="faq-item"><summary>How much should a UK beginner aim to keep as an emergency fund?</summary><p>A common starting target is one month of essential costs, building gradually towards three to six months. Self-employed people or those with variable income often aim higher. Use the <button class="inline-tool-btn" onclick="openTool('emergency')">Emergency Fund tool</button> to convert that target into a monthly saving amount.</p></details>
         </div>
 
         <div class="cta-panel">
@@ -459,8 +578,11 @@
       <div class="wrap">
         <div class="editorial-box">
           <h3>About SaveGrow Lab & Editorial Standards</h3>
-          <p>SaveGrow Lab is an independent financial education platform built to demystify personal finance. Our mission is to provide clear, jargon-free tools and guides that help everyday people make informed decisions about saving, budgeting, and investing.</p>
-          <p style="margin-top: 12px;"><strong>Our Editorial Process:</strong> All content is researched and reviewed to ensure accuracy and alignment with mainstream financial principles. We do not accept payment to alter our educational content or recommend specific financial products. We believe that financial literacy should be free, accessible, and privacy-respecting.</p>
+          <p>SaveGrow Lab is an independent financial education platform built to demystify personal finance. Our mission is to provide clear, jargon-free tools and guides that help everyday people make informed decisions about saving, budgeting, and investing. The site is operated by the Digital Infohub editorial team and publishes for a UK audience, so figures use pounds, sterling-specific concepts such as ISAs, and official sources like the Money and Pensions Service, HMRC and the Financial Conduct Authority.</p>
+          <p style="margin-top: 12px;"><strong>Who writes the content:</strong> Guides and tools are researched and written by the SaveGrow Lab editorial team — a small group of writers and developers with backgrounds in personal-finance content production and web engineering. We are not a regulated financial adviser and we do not claim to be.</p>
+          <p style="margin-top: 12px;"><strong>Our Editorial Process:</strong> Every guide starts from primary sources (official regulators and government publications), is written in plain English, then reviewed for accuracy, arithmetic consistency with our calculators, and clarity before publication. We date each guide, review material pages at least twice a year, and correct errors promptly — email us and we will fix and log significant mistakes. We do not accept payment to alter our educational content or recommend specific financial products, we do not publish sponsored posts, and we do not fabricate testimonials, case studies or statistics. Advertising revenue from Google AdSense never influences what our guides recommend.</p>
+          <p style="margin-top: 12px;"><strong>What our tools do and do not do:</strong> Our calculators run entirely in your browser and use simplified, transparent assumptions stated next to every result. They are planning aids, not predictions. For advice tailored to your circumstances, consult a qualified financial adviser; to compare accounts or understand protections such as the FSCS, use the official sources linked throughout our guides.</p>
+          <p style="margin-top: 12px;"><a href="/guides/" style="color:var(--cyan)">Browse all guides and resources →</a></p>
         </div>
       </div>
     </section>
@@ -471,29 +593,53 @@
         <div class="section-head">
           <div><div class="kicker">Legal & Contact</div><h2>Transparency & Support</h2></div>
         </div>
-        
+
         <div class="legal-section" id="privacy-policy">
           <h3>Privacy Policy</h3>
-          <p>At SaveGrow Lab, we prioritize your privacy. This policy outlines how we handle information.</p>
-          <h4>Data Collection</h4>
-          <p>We do not collect any personal financial data. All calculators on this site run locally in your web browser using JavaScript. The numbers you enter are never sent to our servers.</p>
-          <h4>Analytics & Ads</h4>
-          <p>We may use standard analytics tools to understand site traffic and improve user experience. We also display advertisements via Google AdSense, which may use cookies to serve relevant ads. You can manage your cookie preferences through your browser settings.</p>
+          <p>Last updated: October 2026. At SaveGrow Lab, we prioritise your privacy. This policy describes exactly what this website does and does not collect.</p>
+          <h4>What we do NOT collect</h4>
+          <p>We do not collect any personal or financial data. There are no accounts, no sign-up forms, and no cookies set by SaveGrow Lab itself. All calculators run locally in your web browser using JavaScript — the numbers you enter are processed on your device and are never sent to our servers. We do not currently run our own analytics tool on this site; if we add one in future, this policy will be updated before it goes live.</p>
+          <h4>Advertising (Google AdSense) and third parties</h4>
+          <p>To keep the site free, we display advertisements served by Google AdSense (Google LLC / Google Ireland Limited). Google may use cookies and similar technologies — including the Google Advertising Cookie and DoubleClick Cookie — to serve ads based on your prior visits to this or other websites, and to measure ad performance. Google's behaviour is governed by its own policies rather than ours:</p>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer nofollow">How Google uses information from sites or apps that use its services</a></li>
+            <li><a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer nofollow">Google Ads Settings (opt out of personalised advertising)</a></li>
+            <li><a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer nofollow">About Ads choices page (US-based opt-out)</a></li>
+          </ul>
+          <h4>Hosting and technical logs</h4>
+          <p>The site is hosted on static infrastructure (GitHub Pages). Like most web servers, the host may keep standard technical logs (for example IP address, browser type and requested page) for security and operational purposes. We do not control or monetise those logs.</p>
+          <h4>Your rights</h4>
+          <p>Under UK GDPR you have rights regarding any personal data held about you, including access and erasure. Because we hold no personal data ourselves, requests concerning third-party processing are best directed to Google via the links above; for anything else, email us and we will respond within one month.</p>
+          <h4>Children</h4>
+          <p>This site is not directed at children under 13 (or under the relevant age threshold in your jurisdiction) and we do not knowingly collect data from them.</p>
+        </div>
+
+        <div class="legal-section" id="cookie-information">
+          <h3>Cookie Information</h3>
+          <p>SaveGrow Lab sets <strong>no first-party cookies</strong> and requires no registration. However, advertising served through Google AdSense may use cookies to show ads that are relevant to you. In summary:</p>
+          <ul>
+            <li><strong>Necessary:</strong> none stored by us — the calculators work purely in memory in your browser tab.</li>
+            <li><strong>Advertising cookies:</strong> set by Google to serve, measure and personalise ads. You can opt out of personalised advertising at <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer nofollow">adssettings.google.com</a>, and you can block or delete cookies in your browser settings at any time.</li>
+          </ul>
+          <p>If we introduce consent management or analytics in future, a cookie banner will appear before any non-essential cookies are set, and this section will be updated accordingly.</p>
         </div>
 
         <div class="legal-section" id="terms-of-service">
           <h3>Terms of Service</h3>
-          <p>By using SaveGrow Lab, you agree to the following terms:</p>
+          <p>Last updated: October 2026. By using SaveGrow Lab, you agree to the following terms:</p>
           <ul>
-            <li><strong>Educational Purpose Only:</strong> All content and tools are for educational and informational purposes only. They do not constitute financial, legal, or professional advice.</li>
-            <li><strong>No Warranty:</strong> The calculators provide estimates based on simplified mathematical models. Actual financial results will vary based on real-world conditions, fees, and market performance.</li>
-            <li><strong>Liability:</strong> SaveGrow Lab and its creators are not liable for any financial decisions made based on the information provided here. Always consult a qualified professional for personalized advice.</li>
+            <li><strong>Educational Purpose Only:</strong> All content and tools are for educational and informational purposes only. They do not constitute financial, legal, tax or professional advice, and no advisory relationship is created by using this site.</li>
+            <li><strong>No Warranty:</strong> The calculators provide estimates based on simplified mathematical models. Actual financial results will vary based on real-world conditions, fees, tax and market performance.</li>
+            <li><strong>Liability:</strong> SaveGrow Lab and its operators are not liable for financial decisions made based on the information provided here. Always conduct your own research or consult a qualified professional for personalised advice.</li>
+            <li><strong>Content ownership:</strong> Text, guides and original graphics on this site are © SaveGrow Lab (Digital Infohub). You may share links and short quotations with attribution; you may not republish substantial portions or present our materials as your own.</li>
+            <li><strong>Acceptable use:</strong> You agree not to attempt to disrupt the site, scrape it at abusive volumes, or misuse advertising placements.</li>
+            <li><strong>Third-party links:</strong> We link to authoritative external resources for convenience; we do not control and are not responsible for their content.</li>
           </ul>
         </div>
 
         <div class="legal-section" id="contact-us">
           <h3>Contact Us</h3>
-          <p>We welcome your feedback, questions, or suggestions for new tools.</p>
+          <p>We welcome your feedback, questions, correction requests, or suggestions for new tools.</p>
           <div class="contact-grid">
             <div class="contact-item">
               <strong>Email Support</strong>
@@ -517,24 +663,27 @@
           <strong style="color:#dce9f5; font-size: 16px;">SaveGrow Lab</strong>
           <div style="margin-top:8px; max-width: 300px;">Save smarter. Grow steadily. Free financial tools and education for everyone.</div>
           <div style="margin-top: 12px; font-size: 12px; color: var(--muted-2);">
-            Made by <a href="https://digitalinfohub.net" target="_blank" rel="noopener noreferrer" style="color:var(--cyan);">Digital Infohub</a>
+            Made by <a href="https://digitalinfohub.net" target="_blank" rel="noopener noreferrer nofollow" style="color:var(--cyan);">Digital Infohub</a>
           </div>
         </div>
         <div class="footer-links">
           <a href="#tools">Tools</a>
           <a href="#save">Save</a>
           <a href="#grow">Grow</a>
-          <a href="#guides">Guides</a>
+          <a href="/guides/">Guides hub</a>
+          <a href="/glossary.html">Glossary</a>
+          <a href="#about">About</a>
           <a href="#privacy-policy">Privacy Policy</a>
+          <a href="#cookie-information">Cookie Information</a>
           <a href="#terms-of-service">Terms of Service</a>
           <a href="#contact-us">Contact Us</a>
         </div>
       </div>
       <div class="fineprint">
-        <strong>Disclaimer:</strong> SaveGrow Lab provides general educational information and planning tools, not personalised financial advice. Investment values can fall as well as rise, and you may get back less than you invested. Calculator results are estimates based on the figures you enter and simplified assumptions, and should not be relied upon as exact predictions. Always conduct your own research or consult a qualified financial advisor before making significant financial decisions.
+        <strong>Disclaimer:</strong> SaveGrow Lab provides general educational information and planning tools, not personalised financial advice. Investment values can fall as well as rise, and you may get back less than you invested. Calculator results are estimates based on the figures you enter and simplified assumptions, and should not be relied upon as exact predictions. Always conduct your own research or consult a qualified financial adviser before making significant financial decisions. Tax rules depend on individual circumstances and change over time — verify current figures with HMRC and the FCA.
       </div>
       <div style="margin-top: 20px; font-size: 11px; color: var(--muted-2);">
-        &copy; <span id="year">2026</span> SaveGrow Lab. All rights reserved.
+        &copy; <span id="year">2026</span> SaveGrow Lab (Digital Infohub). All rights reserved. Advertising served by Google AdSense.
       </div>
     </div>
   </footer>
@@ -561,10 +710,24 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const gbp = n => new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:2}).format(Number.isFinite(n)?n:0);
-    const num = id => Number(document.getElementById(id)?.value || 0);
+    const num = id => { const v = Number(document.getElementById(id)?.value); return Number.isFinite(v) ? v : 0; };
+    function invalidInputs(containerId){
+      const box = document.getElementById(containerId);
+      if(!box) return false;
+      return [...box.querySelectorAll('input[type="number"]')].some(i => i.value === '' || !Number.isFinite(Number(i.value)) || Number(i.value) < 0);
+    }
+    function errorCard(msg){
+      return `<div class="result" style="background:rgba(255,143,143,.06);border-color:rgba(255,143,143,.25)"><div class="result-label">Check your inputs</div><div class="result-value" style="font-size:18px;letter-spacing:0">Something is missing or invalid</div><div class="result-meta">${msg} All fields need a number of zero or more (costs and months must be above zero).</div></div>`;
+    }
 
-    function toggleMenu(){ navLinks.classList.toggle('mobile'); }
-    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('mobile')));
+    function toggleMenu(btn){
+      const open = navLinks.classList.toggle('mobile');
+      if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+      navLinks.classList.remove('mobile');
+      document.querySelector('.menu')?.setAttribute('aria-expanded','false');
+    }));
 
     function openSheet(title, sub, body){
       sheetTitle.textContent = title;
@@ -660,18 +823,23 @@
       document.getElementById('savingResult').innerHTML='';
     }
     function calcSavingsAmount(){
+      if(invalidInputs('savingFields')){document.getElementById('savingResult').innerHTML=errorCard('Enter numbers in every field above.');return}
       const target=num('sTarget'), current=num('sCurrent'), months=Math.max(1,num('sMonths')), rate=Math.max(0,num('sRate'))/100/12;
-      if(target<=current){document.getElementById('savingResult').innerHTML=resultCard('Already reached','£0','Your current savings meet or exceed the target.');return}
+      if(target<=current){document.getElementById('savingResult').innerHTML=resultCard('Already reached','£0','Your current savings meet or exceed the target. Well done — consider naming your next goal, or moving this money into a dedicated savings account so it stays out of reach.');return}
       let monthly;
       if(rate===0) monthly=(target-current)/months;
       else monthly=(target-current* Math.pow(1+rate,months))*rate/(Math.pow(1+rate,months)-1);
-      document.getElementById('savingResult').innerHTML=resultCard('Estimated monthly saving',gbp(monthly),`To reach ${gbp(target)} in about ${months} months, starting from ${gbp(current)}.`,stat('Target',gbp(target))+stat('Starting',gbp(current))+stat('Monthly',gbp(monthly)));
+      if(!Number.isFinite(monthly)||monthly<0){document.getElementById('savingResult').innerHTML=errorCard('Those figures produced an impossible result — check the interest rate and months.');return}
+      document.getElementById('savingResult').innerHTML=resultCard('Estimated monthly saving',gbp(monthly),`To reach ${gbp(target)} in about ${months} months, starting from ${gbp(current)}${rate>0?` with ${(rate*12*100).toFixed(1)}% annual interest`:''}. Assumes contributions at month-end and a constant rate.`,stat('Target',gbp(target))+stat('Starting',gbp(current))+stat('Monthly',gbp(monthly)));
     }
     function calcSavingsTime(){
+      if(invalidInputs('savingFields')){document.getElementById('savingResult').innerHTML=errorCard('Enter numbers in every field above.');return}
       const target=num('s2Target'), current=num('s2Current'), monthly=num('s2Monthly');
       const remaining=Math.max(0,target-current);
-      const months=monthly>0?Math.ceil(remaining/monthly):Infinity;
-      document.getElementById('savingResult').innerHTML=resultCard('Estimated time',months===0?'Already there':`${months} month${months===1?'':'s'}`,`At ${gbp(monthly)} per month, excluding interest.`,stat('Remaining',gbp(remaining))+stat('Monthly',gbp(monthly))+stat('Target',gbp(target)));
+      if(monthly<=0){document.getElementById('savingResult').innerHTML=errorCard('Monthly saving must be more than £0 to make progress.');return}
+      const months=Math.ceil(remaining/monthly);
+      const yearsText=months>=12?`, about ${(months/12).toFixed(1)} years`:'';
+      document.getElementById('savingResult').innerHTML=resultCard('Estimated time',`${months} month${months===1?'':'s'}${yearsText}`,`At ${gbp(monthly)} per month, excluding interest. ${months>36?'That is a long horizon — consider a smaller first milestone to stay motivated.':''}`,stat('Remaining',gbp(remaining))+stat('Monthly',gbp(monthly))+stat('Target',gbp(target)));
     }
 
     function switchInterest(mode){
@@ -688,7 +856,8 @@
       document.getElementById('interestResult').innerHTML='';
     }
     function calcInterest(mode){
-      const p=num('iPrincipal'),m=num('iMonthly'),r=Math.max(0,num('iRate'))/100,y=Math.max(1,num('iYears'));
+      if(invalidInputs('interestFields')){document.getElementById('interestResult').innerHTML=errorCard('Enter numbers in every field above.');return}
+      const p=num('iPrincipal'),m=num('iMonthly'),r=Math.max(0,num('iRate'))/100,y=Math.min(80,Math.max(1,num('iYears')));
       const months=Math.round(y*12);
       let total=p;
       if(mode==='compound'){
@@ -698,28 +867,39 @@
         total=p*(1+r*y)+m*months;
       }
       const contributed=p+m*months, growth=total-contributed;
-      document.getElementById('interestResult').innerHTML=resultCard(`Estimated value after ${y} year${y===1?'':'s'}`,gbp(total),`Illustrative calculation at ${r*100}% annual rate with ${gbp(m)} added monthly.`,stat('Contributed',gbp(contributed))+stat('Growth',gbp(growth))+stat('Years',y));
+      const capNote = num('iYears')>80 ? ' Capped at 80 years for this estimate.' : '';
+      document.getElementById('interestResult').innerHTML=resultCard(`Estimated value after ${y} year${y===1?'':'s'}`,gbp(total),`Illustrative calculation at ${(r*100).toFixed(1)}% annual rate with ${gbp(m)} added monthly. ${mode==='compound'?'Compound mode applies interest to the growing balance each month — over long horizons most of your total comes from growth rather than contributions.':`Simple mode credits interest only on the starting amount: ${gbp(p*r*y)} over ${y} year${y===1?'':'s'}.`}${capNote}`,stat('Contributed',gbp(contributed))+stat('Growth',gbp(growth))+stat('Growth share',total>0?((growth/total)*100).toFixed(0)+'%':'—'));
     }
 
     function calcBudget(){
+      if(invalidInputs('sheetBody')){document.getElementById('budgetResult').innerHTML=errorCard('Enter a take-home figure.');return}
       const income=num('bIncome'), style=document.getElementById('bStyle').value.split('/').map(Number);
+      if(income<=0){document.getElementById('budgetResult').innerHTML=errorCard('Income must be more than £0.');return}
       const [ess,flex,save]=style.map(x=>income*x/100);
-      document.getElementById('budgetResult').innerHTML=resultCard('Suggested monthly split',gbp(income),`Using a ${style[0]} / ${style[1]} / ${style[2]} framework. This is a template, not a strict rule.`,stat('Essentials',gbp(ess))+stat('Flexible',gbp(flex))+stat('Save / invest',gbp(save)));
+      document.getElementById('budgetResult').innerHTML=resultCard('Suggested monthly split',gbp(income),`Using a ${style[0]} / ${style[1]} / ${style[2]} framework. This is a template, not a strict rule — if rent and bills exceed the essentials allowance, shift the percentages rather than abandoning the plan.${save>=income*0.15?' That saving rate compounds quickly — project it in the Interest &amp; Growth tool.':''}`,stat('Essentials',gbp(ess))+stat('Flexible',gbp(flex))+stat('Save / invest',gbp(save)));
     }
 
     function calcTravel(){
-      const base=num('tTransport')+num('tAccommodation')+(num('tFood')*num('tDays'))+num('tActivities');
+      if(invalidInputs('sheetBody')){document.getElementById('travelResult').innerHTML=errorCard('Enter numbers in every field above.');return}
+      const days=Math.max(1,num('tDays'));
+      const base=num('tTransport')+num('tAccommodation')+(num('tFood')*days)+num('tActivities');
+      if(base<=0){document.getElementById('travelResult').innerHTML=errorCard('Add at least some costs to get an estimate.');return}
       const buffer=base*Math.max(0,num('tBuffer'))/100, total=base+buffer;
-      document.getElementById('travelResult').innerHTML=resultCard('Estimated trip budget',gbp(total),`Base trip estimate ${gbp(base)} plus ${gbp(buffer)} contingency.`,stat('Transport',gbp(num('tTransport')))+stat('Accommodation',gbp(num('tAccommodation')))+stat('Food',gbp(num('tFood')*num('tDays'))));
+      document.getElementById('travelResult').innerHTML=resultCard('Estimated trip budget',gbp(total),`Base trip estimate ${gbp(base)} plus ${gbp(buffer)} contingency (${num('tBuffer')}%). That is about ${gbp(total/days)} per day over ${days} day${days===1?'':'s'} — turn it into a monthly target with the Savings Goal tool.`,stat('Transport',gbp(num('tTransport')))+stat('Accommodation',gbp(num('tAccommodation')))+stat('Food',gbp(num('tFood')*days)));
     }
     function calcFive(){
+      if(invalidInputs('sheetBody')){document.getElementById('fiveResult').innerHTML=errorCard('Enter item count and rough price.');return}
       const items=num('fiveItems'), price=num('fivePrice'), total=items*price;
-      document.getElementById('fiveResult').innerHTML=resultCard('Quick basket estimate',gbp(total),`${items} item${items===1?'':'s'} × ${gbp(price)}. Replace this with actual prices for precise budgeting.`,stat('Items',items)+stat('Rough item price',gbp(price))+stat('Estimate',gbp(total)));
+      document.getElementById('fiveResult').innerHTML=resultCard('Quick basket estimate',gbp(total),`${items} item${items===1?'':'s'} × ${gbp(price)}. Replace this with actual prices for precise budgeting. Do it weekly and you will quickly see what “small shopping” really costs per year.`,stat('Items',items)+stat('Rough item price',gbp(price))+stat('Estimate',gbp(total)));
     }
     function calcEmergency(){
-      const savings=num('eSavings'), costs=Math.max(1,num('eCosts')), target=Math.max(1,num('eTarget'));
+      if(invalidInputs('sheetBody')){document.getElementById('emergencyResult').innerHTML=errorCard('Enter savings, costs and target months.');return}
+      const savings=num('eSavings'), costs=Math.max(1,num('eCosts')), target=Math.min(24,Math.max(1,num('eTarget')));
       const months=savings/costs, remaining=Math.max(0,target*costs-savings);
-      document.getElementById('emergencyResult').innerHTML=resultCard('Current coverage',`${months.toFixed(1)} months`,`At ${gbp(costs)} of essential costs per month.`,stat('Current savings',gbp(savings))+stat('Target',`${target} months`)+stat('To target',gbp(remaining)));
+      const verdict = months>=target ? `You already cover ${target} months — consider whether extra cash should stay liquid or move towards longer-term goals.`
+        : months>=1 ? `A solid start. To close the gap, split ${gbp(remaining)} over a realistic timeline — e.g. ${gbp(remaining/12)} a month reaches it within a year.`
+        : `Even one week of costs saved builds a first cushion. Start small, automate it, then raise the amount when your income allows.`;
+      document.getElementById('emergencyResult').innerHTML=resultCard('Current coverage',`${months.toFixed(1)} months`,`At ${gbp(costs)} of essential costs per month. ${verdict}`,stat('Current savings',gbp(savings))+stat('Target',`${target} months`)+stat('To target',gbp(remaining)));
     }
   </script>
 </body>
