@@ -254,3 +254,13 @@ details summary::marker { content: ""; }
   .trust-row{display:grid;grid-template-columns:1fr 1fr}
   .result-grid{grid-template-columns:1fr}
 }
+
+/* ---- ASSISTANT BANNER (top of index.html) ---- */
+.assistant-bar{border-bottom:1px solid var(--line);background:linear-gradient(115deg,rgba(87,170,248,.07),rgba(91,228,154,.06));padding:26px 0}
+.assistant-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.assistant-intro{max-width:640px}
+.assistant-title{font-size:clamp(22px,3vw,30px);letter-spacing:-1px;margin:12px 0 8px}
+.assistant-intro p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+.assistant-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.assistant-hint{font-size:12px}
+@media(max-width:680px){.assistant-bar{padding:20px 0}.assistant-actions .btn{width:100%}}
