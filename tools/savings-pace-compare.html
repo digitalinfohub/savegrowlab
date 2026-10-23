@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5443646750699471" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>Savings Pace Comparison Tool — Compare Multiple Goals Side by Side</title>
+  <meta name="description" content="Free interactive worksheet: enter up to four savings goals with targets, timelines and interest rates, then compare the monthly cost of each and see which plan fits your budget. Runs entirely in your browser.">
+  <meta name="author" content="SaveGrow Lab Editorial Team (Digital Infohub)">
+  <link rel="canonical" href="https://savegrowlab.co.uk/tools/savings-pace-compare.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SaveGrow Lab">
+  <meta property="og:url" content="https://savegrowlab.co.uk/tools/savings-pace-compare.html">
+  <meta property="og:title" content="Savings Pace Comparison Tool — SaveGrow Lab">
+  <meta property="og:description" content="Compare up to four savings goals at once: monthly cost per goal, totals against your budget, and which target wins on time or money.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234ca9ff'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%2306111f'%3ESG%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Savings Pace Comparison Tool",
+    "url": "https://savegrowlab.co.uk/tools/savings-pace-compare.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any (web-based)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "browserRequirements": "Requires JavaScript",
+    "description": "Compares up to four savings goals side by side, showing the monthly saving required for each and the combined total against a chosen budget.",
+    "publisher": { "@type": "Organization", "name": "SaveGrow Lab", "url": "https://savegrowlab.co.uk/" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to content</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/" aria-label="SaveGrow Lab home">
+        <span class="brand-mark" aria-hidden="true">SG</span>
+        <span>Save<span>Grow</span> Lab</span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="/#tools">Tools</a>
+        <a href="/guides/">Guides</a>
+        <a href="/tools/" aria-current="page">Calculators</a>
+        <a href="/glossary.html">Glossary</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <a class="nav-cta" href="/guides/">Read Guides</a>
+      <button class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleMenu(this)">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap">
+      <div class="tool-page">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/">Calculators</a> › Savings Pace Compare</nav>
+        <span class="eyebrow"><i></i> Interactive tool</span>
+        <h1 style="font-size:clamp(38px,5vw,58px);letter-spacing:-2.4px;margin:16px 0 14px;line-height:1.04">Savings pace <span class="grad">comparison tool.</span></h1>
+        <p class="hero-copy">Most planning tools assume you have one goal. Real life has several — a car repair fund, a holiday, a deposit, a wedding — all competing for the same monthly surplus. Enter up to four goals below and compare what each demands, together and separately.</p>
+
+        <div class="tool-panel" id="pacePanel">
+          <div class="field-grid" style="margin-bottom:16px">
+            <div class="field">
+              <label for="paceBudget">Monthly amount you can realistically save (£)</label>
+              <input id="paceBudget" type="number" value="250" min="0">
+            </div>
+            <div class="field">
+              <label>&nbsp;</label>
+              <button class="btn secondary" type="button" onclick="renderPace()" style="width:100%">Recalculate all goals ↻</button>
+            </div>
+          </div>
+          <div id="paceRows"></div>
+          <div class="calc-actions">
+            <span class="subtle">Blank or zero rows are ignored. Interest is optional — leave it at 0 for current accounts.</span>
+            <button class="btn primary" type="button" onclick="comparePace()">Compare my goals →</button>
+          </div>
+          <div id="paceResult" role="status" aria-live="polite"></div>
+        </div>
+
+        <section class="article-page" style="padding:30px 0 20px">
+          <h2>How to read the results</h2>
+          <p>The tool answers three questions at once:</p>
+          <ul>
+            <li><strong>What does each goal cost per month?</strong> Using the same maths as our <a href="/#tools">Savings Goal calculator</a>: (target − starting balance), grown or reduced by any interest you entered, divided across the months remaining.</li>
+            <li><strong>Do they fit together?</strong> The combined monthly demand is compared against the saving budget you set at the top. If the total overshoots, the tool tells you by how much.</li>
+            <li><strong>Which goal is most efficient?</strong> The comparison highlights the goal that reaches its target <em>soonest relative to its size</em>, and the one eating the largest share of your budget — usually the right places to start trimming or renegotiating deadlines.</li>
+          </ul>
+          <div class="callout"><strong>Planning tip:</strong> if the combined demand exceeds your budget, don't abandon goals — stretch timelines first. A £1,200 goal over 12 months costs £100/month; over 18 months it costs £67. Deadlines are negotiable far more often than we assume. For the habit side of this, read <a href="/guides/how-to-save-money.html">how to save money consistently</a>.</div>
+
+          <h2>Worked example</h2>
+          <table class="article-table">
+            <thead><tr><th>Goal</th><th>Target</th><th>Already saved</th><th>Months</th><th>Rate</th><th>Monthly needed</th></tr></thead>
+            <tbody>
+              <tr><td>Car repairs</td><td>£900</td><td>£300</td><td>6</td><td>0%</td><td>£100.00</td></tr>
+              <tr><td>Holiday</td><td>£1,500</td><td>£300</td><td>10</td><td>2%</td><td>£118.60</td></tr>
+              <tr><td>Emergency top-up</td><td>£1,000</td><td>£600</td><td>8</td><td>4%</td><td>£47.42</td></tr>
+              <tr><td colspan="5"><strong>Combined demand</strong></td><td><strong>£266.02</strong></td></tr>
+            </tbody>
+          </table>
+          <p>Against a £250 budget, this plan overshoots by about £16 a month — roughly one takeaway. Either extend the holiday by two months or trim the rate assumption, and everything fits. Small adjustments beat abandoned plans.</p>
+
+          <div class="faq" style="margin-top:26px">
+            <details class="faq-item"><summary>Does this tool remember my goals?</summary><p>No. Like every SaveGrow Lab calculator it runs entirely in your browser — refresh the page and the fields reset. Nothing is transmitted or stored anywhere else. See our <a href="/privacy-policy.html">Privacy Policy</a>.</p></details>
+            <details class="faq-item"><summary>Why include interest at all if it's small?</summary><p>On short horizons interest barely moves the number, but on multi-year goals it can cut the required saving noticeably. Our <a href="/guides/compound-interest-explained.html">compound interest guide</a> shows exactly when it starts to matter.</p></details>
+            <details class="faq-item"><summary>Should I fund all goals at once?</summary><p>Only if the maths above says yes. A common, sane order is: small emergency buffer → matched employer pension contributions → high-cost debt → the rest by deadline urgency. The <a href="/guides/emergency-fund-uk.html">emergency fund guide</a> explains why the buffer comes first.</p></details>
+            <details class="faq-item"><summary>Where do ISAs fit?</summary><p>If a goal is beyond ~18 months and you're using your tax-free allowance, an ISA wrapper may beat a regular account. Our comparison of the mechanics is in <a href="/guides/isa-vs-savings-account-uk.html">ISAs vs savings accounts</a>.</p></details>
+          </div>
+
+          <div class="cta-panel">
+            <div><h3>Want the single-goal version?</h3><p>The classic two-way savings calculator lives with the rest of the toolbox.</p></div>
+            <a class="btn primary" href="/tools/">Back to all calculators →</a>
+          </div>
+
+          <h2>Keep exploring</h2>
+          <div class="related-grid">
+            <a href="/guides/how-to-save-money.html"><b>How to save money</b>A practical UK system for consistent saving.</a>
+            <a href="/guides/budgeting-guide-uk.html"><b>Budgeting guide</b>Find the surplus these goals depend on.</a>
+            <a href="/glossary.html"><b>Money glossary</b>Every term used here, in plain English.</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- AD SLOT -->
+  <div class="wrap">
+    <div class="ad-container" style="margin-bottom:40px">
+      <span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5443646750699471" data-ad-slot="8451723433" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <div>
+          <strong style="color:#dce9f5; font-size: 16px;">SaveGrow Lab</strong>
+          <div style="margin-top:8px; max-width: 300px;">Save smarter. Grow steadily. Free financial tools and education for everyone.</div>
+          <div style="margin-top: 12px; font-size: 12px; color: var(--muted-2);">
+            Made by <a href="https://digitalinfohub.net" target="_blank" rel="noopener noreferrer nofollow" style="color:var(--cyan);">Digital Infohub</a>
+          </div>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="/#tools">Tools</a>
+          <a href="/tools/">All calculators</a>
+          <a href="/guides/">Guides hub</a>
+          <a href="/glossary.html">Glossary</a>
+          <a href="/about.html">About Us</a>
+          <a href="/contact.html">Contact Us</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
+        </nav>
+      </div>
+      <div class="fineprint">
+        <strong>Disclaimer:</strong> SaveGrow Lab provides general educational information and planning tools, not personalised financial advice. Investment values can fall as well as rise, and you may get back less than you invested. Calculator results are estimates based on the figures you enter and simplified assumptions, and should not be relied upon as exact predictions. Always conduct your own research or consult a qualified financial adviser before making significant financial decisions. Tax rules depend on individual circumstances and change over time — verify current figures with HMRC and the FCA.
+      </div>
+      <div style="margin-top: 20px; font-size: 11px; color: var(--muted-2);">
+        &copy; <span id="year">2026</span> SaveGrow Lab (Digital Infohub). All rights reserved. Advertising served by Google AdSense.
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/site.js"></script>
+  <script>
+    // Savings Pace Comparison — standalone multi-goal worksheet (all client-side)
+    const GOAL_COUNT = 4;
+    const defaults = [
+      {name:'Car repairs', target:900, current:300, months:6, rate:0},
+      {name:'Holiday', target:1500, current:300, months:10, rate:2},
+      {name:'Emergency top-up', target:1000, current:600, months:8, rate:4},
+      {name:'', target:0, current:0, months:0, rate:0}
+    ];
+    function renderPace(){
+      const host = document.getElementById('paceRows');
+      host.innerHTML = defaults.map((g,i)=>`
+        <fieldset style="border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 12px">
+          <legend style="font-size:12px;color:var(--muted-2);padding:0 6px">Goal ${i+1}</legend>
+          <div class="field-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+            <div class="field"><label for="gName${i}">Name</label><input id="gName${i}" type="text" value="${g.name.replace(/"/g,'&quot;')}" placeholder="e.g. Deposit"></div>
+            <div class="field"><label for="gTarget${i}">Target (£)</label><input id="gTarget${i}" type="number" min="0" value="${g.target}"></div>
+            <div class="field"><label for="gCurrent${i}">Saved so far (£)</label><input id="gCurrent${i}" type="number" min="0" value="${g.current}"></div>
+            <div class="field"><label for="gMonths${i}">Months</label><input id="gMonths${i}" type="number" min="0" value="${g.months}"></div>
+            <div class="field"><label for="gRate${i}">Interest % (optional)</label><input id="gRate${i}" type="number" min="0" step="0.1" value="${g.rate}"></div>
+          </div>
+        </fieldset>`).join('');
+    }
+    function monthlyFor(target,current,months,ratePct){
+      if(months<=0||target<=current) return null;
+      const r=Math.max(0,ratePct)/100/12;
+      if(r===0) return (target-current)/months;
+      const m=(target-current*Math.pow(1+r,months))*r/(Math.pow(1+r,months)-1);
+      return Number.isFinite(m)&&m>=0 ? m : null;
+    }
+    function comparePace(){
+      const out=document.getElementById('paceResult');
+      const budgetInput=Number(document.getElementById('paceBudget').value);
+      if(!Number.isFinite(budgetInput)||budgetInput<0){
+        out.innerHTML='<div class="result" style="background:rgba(255,143,143,.06);border-color:rgba(255,143,143,.25)"><div class="result-label">Check inputs</div><div class="result-value" style="font-size:18px;letter-spacing:0">Set a valid monthly saving budget</div><div class="result-meta">Enter a number of zero or more at the top of the panel.</div></div>';return;
+      }
+      const goals=[]; let bad=false;
+      for(let i=0;i<GOAL_COUNT;i++){
+        const t=Number(document.getElementById('gTarget'+i).value);
+        const c=Number(document.getElementById('gCurrent'+i).value);
+        const mo=Number(document.getElementById('gMonths'+i).value);
+        const ra=Number(document.getElementById('gRate'+i).value);
+        if([t,c,mo,ra].some(v=>!Number.isFinite(v)||v<0)){bad=true;continue}
+        if(t<=0) continue; // empty row
+        const name=(document.getElementById('gName'+i).value.trim())||('Goal '+(i+1));
+        const monthly=monthlyFor(t,c,Math.max(1,mo),ra);
+        if(monthly===null){goals.push({name,target:t,current:c,months:mo,monthly:0,done:true});}
+        else goals.push({name,target:t,current:c,months:Math.max(1,mo),monthly,done:false});
+      }
+      if(bad){out.innerHTML='<div class="result" style="background:rgba(255,143,143,.06);border-color:rgba(255,143,143,.25)"><div class="result-label">Check inputs</div><div class="result-value" style="font-size:18px;letter-spacing:0">One or more rows contain invalid numbers</div><div class="result-meta">Every filled goal needs a target, saved-so-far amount and months as non-negative numbers.</div></div>';return}
+      if(goals.length===0){out.innerHTML='<div class="result" style="background:rgba(255,181,100,.06);border-color:rgba(255,181,100,.25)"><div class="result-label">Nothing to compare</div><div class="result-value" style="font-size:18px;letter-spacing:0">Add at least one target</div><div class="result-meta">Give at least one goal a Target (£) above zero, then press Compare again.</div></div>';return}
+      const total=goals.reduce((s,g)=>s+g.monthly,0);
+      const active=goals.filter(g=>!g.done&&g.monthly>0);
+      const biggest=active.length?active.reduce((a,b)=>b.monthly>a.monthly?b:a):null;
+      const efficient=active.length?active.reduce((a,b)=>{
+        const pa=a.monthly/a.target, pb=b.monthly/b.target; return pb<pa?b:a;}):null;
+      const diff=total-budgetInput;
+      const verdict = diff<=0
+        ? `Fits your £${budgetInput.toFixed(2)} budget with £${(-diff).toFixed(2)} spare. That headroom could fund a fourth goal, or simply make the plan survive a bad month.`
+        : `Overshoots your £${budgetInput.toFixed(2)} budget by £${diff.toFixed(2)} a month. Extend the longest-timeline goal first, or move it into a separate “someday” list.`;
+      const rows=goals.map(g=>`<tr><td>${g.name}</td><td>${gbp(g.target)}</td><td>${g.months?g.months+' mo':'—'}</td><td>${g.done?'Reached ✓':gbp(g.monthly)}</td></tr>`).join('');
+      out.innerHTML=`<div class="result">
+        <div class="result-label">Combined monthly demand</div>
+        <div class="result-value">${gbp(total)}</div>
+        <div class="result-meta">${verdict}${biggest?` Largest single demand: <strong>${biggest.name}</strong> at ${gbp(biggest.monthly)}/mo.`:''}${efficient&&active.length>1?` Most budget-efficient: <strong>${efficient.name}</strong> (lowest cost per £1,000 of target).`:''}</div>
+        <table class="article-table" style="margin-top:16px"><thead><tr><th>Goal</th><th>Target</th><th>Timeline</th><th>Monthly needed</th></tr></thead><tbody>${rows}</tbody></table>
+      </div>`;
+    }
+    renderPace();
+  </script>
+</body>
+</html>
