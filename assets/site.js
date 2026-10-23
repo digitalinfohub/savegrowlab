@@ -8,6 +8,7 @@ function toggleMenu(btn){
   return open;
 }
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+  if(!navLinks) return;
   navLinks.classList.remove('mobile');
   document.querySelector('.menu')?.setAttribute('aria-expanded','false');
 }));
