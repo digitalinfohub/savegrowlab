@@ -1,11 +1,14 @@
-/* SaveGrow Lab — shared site behaviour (nav menu, calculator modal) */
+/* SaveGrow Lab — shared site behaviour (nav menu, calculator modal, assistant) */
 const navLinks = document.getElementById('navLinks');
 
 function toggleMenu(btn){
+  if(!navLinks) return false;
   const open = navLinks.classList.toggle('mobile');
   if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  return open;
 }
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+  if(!navLinks) return;
   navLinks.classList.remove('mobile');
   document.querySelector('.menu')?.setAttribute('aria-expanded','false');
 }));
@@ -14,7 +17,9 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
 const yearEl = document.getElementById('year');
 if(yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* ---- Calculator modal (shared across pages) ---- */
+/* ---- Calculator modal (shared across pages).
+   Pages without an #overlay element (About, Contact, legal pages, guide hub)
+   fall back to navigating to the calculators hub so no buttons break. ---- */
 const overlay = document.getElementById('overlay');
 const sheetTitle = document.getElementById('sheetTitle');
 const sheetSub = document.getElementById('sheetSub');
@@ -32,6 +37,9 @@ function errorCard(msg){
 }
 
 function openSheet(title, sub, body){
+  // Pages without the modal markup (About, Contact, legal pages, guide hub)
+  // send the user to the calculators hub instead of throwing an error.
+  if(!overlay || !sheetBody){ window.location.href = '/tools/'; return; }
   sheetTitle.textContent = title;
   sheetSub.textContent = sub;
   sheetBody.innerHTML = body;
@@ -41,6 +49,7 @@ function openSheet(title, sub, body){
 }
 function closeSheet(e){
   if(e && e.target!==overlay) return;
+  if(!overlay) return;
   overlay.classList.remove('open');
   document.body.style.overflow='';
 }
@@ -52,8 +61,14 @@ function resultCard(label,value,meta,stats=''){
 }
 function stat(label,value){return `<div class="result-stat"><b>${value}</b><span>${label}</span></div>`}
 
+const SG_CHAT = {
+  savings:'Savings goal', interest:'Interest & growth', budget:'Monthly budget',
+  travel:'Trip budget', five:'The £5 basket rule', emergency:'Emergency fund'
+};
 function openTool(type){
-  navLinks.classList.remove('mobile');
+  if(navLinks) navLinks.classList.remove('mobile');
+  // No modal on this page? Deep-link to the calculators hub instead of erroring.
+  if(!overlay){ window.location.href = '/tools/' + (SG_CHAT[type] ? '?tool=' + type : ''); return; }
   if(type==='savings'){
     openSheet('Savings goal','Work out the monthly amount needed for a target, or see how long regular saving could take.',`
       <div class="tabs"><button class="tab active" id="saveModeAmount" onclick="switchSavingsMode('amount')">Target → monthly</button><button class="tab" id="saveModeTime" onclick="switchSavingsMode('time')">Monthly → time</button></div>
@@ -107,9 +122,12 @@ function openTool(type){
 }
 
 function switchSavingsMode(mode){
-  document.getElementById('saveModeAmount').classList.toggle('active',mode==='amount');
-  document.getElementById('saveModeTime').classList.toggle('active',mode==='time');
-  document.getElementById('savingFields').innerHTML = mode==='amount' ? `
+  // Guarded: these elements only exist inside the Savings Goal modal.
+  document.getElementById('saveModeAmount')?.classList.toggle('active',mode==='amount');
+  document.getElementById('saveModeTime')?.classList.toggle('active',mode==='time');
+  const fields = document.getElementById('savingFields');
+  if(!fields) return;
+  fields.innerHTML = mode==='amount' ? `
     <div class="field-grid">
       <div class="field"><label>Target (£)</label><input id="sTarget" type="number" value="1500" min="0"></div>
       <div class="field"><label>Already saved (£)</label><input id="sCurrent" type="number" value="300" min="0"></div>
@@ -203,3 +221,196 @@ function calcEmergency(){
     : `Even one week of costs saved builds a first cushion. Start small, automate it, then raise the amount when your income allows.`;
   document.getElementById('emergencyResult').innerHTML=resultCard('Current coverage',`${months.toFixed(1)} months`,`At ${gbp(costs)} of essential costs per month. ${verdict}`,stat('Current savings',gbp(savings))+stat('Target',`${target} months`)+stat('To target',gbp(remaining)));
 }
+
+/* ============================================================
+   SAVEGROW ASSISTANT — floating, rule-based help chat.
+   Injected on every page by site.js so the widget markup and
+   styles live in one place (no duplication across HTML files).
+   Keyword rules map questions to guides, tools and pages.
+   100% local: nothing typed here is stored or sent anywhere.
+   ============================================================ */
+const SG_CSS = `
+.chat-fab{position:fixed;right:22px;bottom:22px;z-index:60;display:flex;align-items:center;gap:9px;border:1px solid rgba(103,232,249,.35);background:linear-gradient(135deg,#0e2b47,#0a1f33);color:#dff9ff;font-weight:800;font-size:14px;padding:13px 17px;border-radius:999px;box-shadow:0 16px 44px rgba(0,0,0,.4);transition:.2s}
+.chat-fab:hover{transform:translateY(-2px);border-color:rgba(103,232,249,.6)}
+.chat-panel{position:fixed;right:22px;bottom:22px;z-index:61;width:min(380px,calc(100vw - 24px));max-height:min(560px,calc(100vh - 40px));display:none;flex-direction:column;background:linear-gradient(160deg,#0b1d31,#081522);border:1px solid var(--line-strong,rgba(255,255,255,.14));border-radius:20px;box-shadow:0 40px 120px rgba(0,0,0,.55);overflow:hidden;animation:sgRise .18s ease-out}
+.chat-panel.open{display:flex}
+@keyframes sgRise{from{transform:translateY(14px);opacity:.55}to{transform:none;opacity:1}}
+.chat-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.03)}
+.chat-title{font-weight:850;font-size:15px;color:#eaf4fd}
+.chat-sub{font-size:11px;color:#73869c;margin-top:2px}
+.chat-close{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#fff;border-radius:9px;padding:6px 9px;font-size:13px}
+.chat-log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.chat-msg{max-width:88%;padding:10px 12px;border-radius:14px;font-size:13.5px;line-height:1.6}
+.chat-msg.bot{align-self:flex-start;background:rgba(87,170,248,.1);border:1px solid rgba(87,170,248,.18);color:#c3d9ea;border-bottom-left-radius:4px}
+.chat-msg.user{align-self:flex-end;background:rgba(91,228,154,.12);border:1px solid rgba(91,228,154,.22);color:#d9f5e6;border-bottom-right-radius:4px}
+.chat-msg a{color:#67e8f9;text-decoration:underline;text-underline-offset:2px}
+.chat-msg .inline-tool-btn{display:block;margin-top:8px}
+.chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.chat-chip{font-size:11px;font-weight:750;color:#ccecff;border:1px solid rgba(87,170,248,.25);background:rgba(87,170,248,.08);border-radius:999px;padding:5px 9px}
+.chat-chip:hover{background:rgba(87,170,248,.18)}
+.chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02)}
+.chat-input{flex:1;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:11px;background:#0c2137;color:#fff;outline:none;font-size:14px}
+.chat-input:focus{border-color:rgba(103,232,249,.45);box-shadow:0 0 0 3px rgba(103,232,249,.08)}
+.chat-send{border:none;border-radius:11px;padding:10px 14px;font-weight:850;color:#06111f;background:linear-gradient(135deg,#7dd3fc,#70efbc)}
+@media(max-width:480px){.chat-fab span{display:none}.chat-fab{padding:14px}}
+`;
+
+const SG_RULES = [
+  {id:'greeting', kw:['hello','hi ','hey','good morning','good afternoon','howdy'],
+   reply:"Hello! I'm the SaveGrow assistant. Ask me about saving goals, budgets, compound interest, emergency funds, trips or UK investing — I'll point you to the right calculator or guide.",
+   chips:['Savings goal','Budget help','Compound interest']},
+  {id:'thanks', kw:['thank','thanks','cheers'],
+   reply:"You're welcome! If another money question pops up, just ask — every calculator here runs privately in your browser.",
+   chips:[]},
+  {id:'bye', kw:['bye','goodbye','see you'],
+   reply:"Take care! The Savings Goal calculator is a good first stop next time. 👋",
+   chips:[]},
+  {id:'savings-goal', kw:['save for','saving for','goal','target','holiday fund','wedding','monthly saving','save monthly','how much do i need'],
+   reply:"A named target is the fastest way to actually save. The Savings Goal calculator works out the monthly amount you need — or how long your current pace will take. The <a href='/guides/how-to-save-money.html'>saving plan guide</a> explains how to keep the habit going.",
+   action:{label:'Open Savings Goal calculator', tool:'savings'}},
+  {id:'budget', kw:['budget','50/30/20','spending plan','afford','short at the end','money runs out','split my income'],
+   reply:"Try the Monthly Budget tool: enter your take-home pay and it splits it across essentials, flexible spending and saving using 50/30/20 (or 60/20/20 / 70/15/15 if rent is high). The <a href='/guides/budgeting-guide-uk.html'>UK budgeting guide</a> covers real salary examples.",
+   action:{label:'Open Monthly Budget tool', tool:'budget'}},
+  {id:'compound', kw:['compound','interest rate','aer','apy','double my money','rule of 72','how does interest work','growth'],
+   reply:"Compound interest means earning returns on your returns — early years look slow, later ones accelerate. The Interest &amp; Growth calculator compares simple vs compound with monthly contributions. Worked examples are in the <a href='/guides/compound-interest-explained.html'>compound interest guide</a>.",
+   action:{label:'Open Interest & Growth calculator', tool:'interest'}},
+  {id:'emergency', kw:['emergency fund','rainy day','job loss','redundancy','cushion','unexpected bill','car broke','how much cash should i keep'],
+   reply:"An emergency fund turns a crisis into an inconvenience. Sensible ladder: one month of essential costs first, then three to six. The Emergency Fund tool shows your current coverage and what closes the gap — details in the <a href='/guides/emergency-fund-uk.html'>emergency fund guide</a>.",
+   action:{label:'Open Emergency Fund tool', tool:'emergency'}},
+  {id:'travel', kw:['trip','holiday','travel','vacation','flight','honeymoon','city break'],
+   reply:"Plan the fun part first: the Trip Budget tool adds transport, accommodation, food per day, activities and a contingency buffer. Then turn the total into a monthly figure with the Savings Goal calculator, or compare destinations with the <a href='/tools/savings-pace-compare.html'>savings pace tool</a>.",
+   action:{label:'Open Trip Budget tool', tool:'travel'}},
+  {id:'shopping', kw:['shopping','basket','supermarket','till','checkout','impulse','£5','five pound','small purchases'],
+   reply:"The £5 basket rule is a quick mental trick: treat each ordinary item as roughly £5, so eight items ≈ £40 before you reach the till. It keeps the whole basket visible instead of judging items one at a time. More systems in the <a href='/guides/how-to-save-money.html'>saving guide</a>.",
+   action:{label:'Try the £5 Basket tool', tool:'five'}},
+  {id:'investing', kw:['invest','stocks','shares','etf','fund','portfolio','risk','index fund','beginner'],
+   reply:"Investing means accepting short-term uncertainty for possible long-term growth — never invest money you'll need within 3–5 years. Start with the <a href='/guides/investing-for-beginners-uk.html'>beginner investing guide</a> (asset types, fees, diversification, FCA sources). This site is education, not personal advice.",
+   chips:['ISA vs savings','Compound interest']},
+  {id:'isa', kw:['isa','cash isa','stocks and shares','tax free','tax-free','allowance'],
+   reply:"ISAs shelter interest or investment gains from UK tax within the annual allowance; a plain savings account doesn't. Which suits you depends on time horizon and risk — see the <a href='/guides/isa-vs-savings-account-uk.html'>ISA vs savings account comparison</a>.",
+   chips:['Investing basics','Emergency fund']},
+  {id:'debt', kw:['debt','loan','credit card','overdraft','borrow','repay'],
+   reply:"Debt interest compounds too — usually faster than savings grow — so clearing high-rate cards often beats investing extra cash. Use the Monthly Budget tool to find headroom, then attack the highest-rate balance first. Background reading: the <a href='/guides/compound-interest-explained.html'>compound interest guide</a>.",
+   action:{label:'Open Monthly Budget tool', tool:'budget'}},
+  {id:'glossary', kw:['what does','meaning of','definition','jargon','acronym','ocf','fscs'],
+   reply:"Plain-English definitions for 40+ money terms — AER, OCF, FSCS, liquidity and more — live in the <a href='/glossary.html'>SaveGrow Lab glossary</a>. You can also ask me about saving, budgeting or investing directly.",
+   chips:[]},
+  {id:'privacy', kw:['privacy','cookie','gdpr','personal information','secure','stored','data'],
+   reply:"Your privacy is built in: no account needed, calculators run entirely in your browser, and the numbers you type are never sent to our servers. Google AdSense may use its own cookies. Full details in the <a href='/privacy-policy.html'>Privacy Policy</a>.",
+   chips:[]},
+  {id:'contact', kw:['contact','email','reach you','speak to someone','correction','report an error','feedback','support'],
+   reply:"Email the editorial team at <a href='mailto:services@digitalinfohub.net'>services@digitalinfohub.net</a>, or use the <a href='/contact.html'>contact form</a> — it opens a pre-filled email in your mail app, so nothing is stored on our servers. We aim to reply within 2–3 business days.",
+   chips:[]},
+  {id:'about', kw:['who are you','what is savegrow','mission','who writes','about us'],
+   reply:"SaveGrow Lab is an independent UK money-education project by the Digital Infohub editorial team: free in-browser calculators plus guides on saving, budgeting and beginner investing. We're not a regulated adviser. More on the <a href='/about.html'>About Us page</a>.",
+   chips:[]},
+  {id:'tools-list', kw:['tool','tools','calculator','calculators','what can you do','options','features'],
+   reply:"Seven free tools run in your browser: Savings Goal, Interest &amp; Growth, Monthly Budget, Trip Budget, £5 Basket, Emergency Fund, and the multi-goal <a href='/tools/savings-pace-compare.html'>Savings Pace Comparison</a>. Describe your situation and I'll pick one for you.",
+   chips:['Savings goal','Budget help','Emergency fund']},
+  {id:'guides-list', kw:['guide','article','read','learn','blog','resource'],
+   reply:"Six in-depth guides: <a href='/guides/how-to-save-money.html'>saving systems</a>, <a href='/guides/compound-interest-explained.html'>compound interest</a>, <a href='/guides/emergency-fund-uk.html'>emergency funds</a>, <a href='/guides/budgeting-guide-uk.html'>UK budgeting</a>, <a href='/guides/investing-for-beginners-uk.html'>beginner investing</a> and <a href='/guides/isa-vs-savings-account-uk.html'>ISAs vs savings accounts</a> — all listed at the <a href='/guides/'>guides hub</a>.",
+   chips:[]}
+];
+const SG_FALLBACK = "I'm a simple rule-based helper, so I might not follow everything — but I know my way around saving goals, budgets, compound interest, emergency funds, trips, shopping habits, UK investing and ISAs. Try naming what you want to work out, or browse the <a href='/tools/'>calculators</a> and <a href='/guides/'>guides</a>.";
+
+function sgScore(text, kw){
+  let s = 0;
+  for(const k of kw){
+    if(k.includes(' ')){
+      // multi-word phrases are safe to match as plain substrings
+      if(text.includes(k)) s += 2;
+    } else {
+      // single words must match whole words only (avoids "fund" firing on "funding")
+      const re = new RegExp('\\b' + k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b');
+      if(re.test(text)) s += 1;
+    }
+  }
+  return s;
+}
+function sgMatch(raw){
+  const text = ' ' + raw.toLowerCase().replace(/[^a-z0-9£$&'\/\s.-]/g,' ').replace(/\s+/g,' ') + ' ';
+  let best = null, bestScore = 0;
+  for(const rule of SG_RULES){
+    const sc = sgScore(text, rule.kw);
+    if(sc > bestScore){ best = rule; bestScore = sc; }
+  }
+  return best || {id:'fallback', reply:SG_FALLBACK, chips:['Savings goal','Budget help','Investing basics']};
+}
+function sgAppend(role, html){
+  const log = document.getElementById('chatLog');
+  if(!log) return;
+  const m = document.createElement('div');
+  m.className = 'chat-msg ' + role;
+  m.innerHTML = html;
+  log.appendChild(m);
+  log.scrollTop = log.scrollHeight;
+}
+function sgChips(list){
+  if(!list || !list.length) return '';
+  return `<div class="chat-chips">${list.map(c=>`<button class="chat-chip" onclick="sgAsk('${c.replace(/'/g,"\\'")}')">${c}</button>`).join('')}</div>`;
+}
+function sgAsk(preset){
+  const input = document.getElementById('chatInput');
+  if(input){ input.value = preset; sgSend(); }
+}
+function sgSend(){
+  const input = document.getElementById('chatInput');
+  if(!input) return;
+  const raw = input.value.trim();
+  if(!raw){ input.focus(); return; }
+  sgAppend('user', `<span>${raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span>`);
+  input.value = '';
+  const rule = sgMatch(raw);
+  setTimeout(()=>{
+    sgAppend('bot', `<span>${rule.reply}${rule.action ? ` <button class="inline-tool-btn" onclick="openTool('${rule.action.tool}')">${rule.action.label} →</button>` : ''}</span>${sgChips(rule.chips)}`);
+  }, 250);
+}
+function toggleChat(){
+  const panel = document.getElementById('chatPanel');
+  const fab = document.getElementById('chatFab');
+  if(!panel) return false;
+  const open = panel.classList.toggle('open');
+  if(fab) fab.style.display = open ? 'none' : 'flex';
+  if(open) setTimeout(()=>document.getElementById('chatInput')?.focus(), 50);
+  return open;
+}
+// Opens the assistant from any trigger (e.g. the banner at the top of index.html).
+function openChat(){
+  const panel = document.getElementById('chatPanel');
+  if(panel && !panel.classList.contains('open')) toggleChat();
+  else if(!panel) setTimeout(openChat, 120); // widget still loading
+}
+
+/* On the calculators hub, auto-open the tool requested via ?tool=<type>. */
+(function maybeAutoOpenTool(){
+  try{
+    const q = new URLSearchParams(window.location.search);
+    const t = q.get('tool');
+    if(t && SG_CHAT[t] && typeof openTool === 'function'){
+      setTimeout(()=>openTool(t), 300);
+    }
+  }catch(e){ /* file:// or unsupported — ignore */ }
+})();
+(function initChatWidget(){
+  if(!document.body) return;
+  const style = document.createElement('style');
+  style.textContent = SG_CSS;
+  document.head.appendChild(style);
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <button class="chat-fab" id="chatFab" aria-haspopup="dialog" aria-controls="chatPanel" aria-expanded="false" onclick="toggleChat()">💬<span>Ask SaveGrow</span></button>
+    <section class="chat-panel" id="chatPanel" role="dialog" aria-modal="false" aria-labelledby="chatTitle">
+      <header class="chat-head">
+        <div><div class="chat-title" id="chatTitle">SaveGrow Assistant</div><div class="chat-sub">Rule-based help · runs locally, nothing is sent anywhere</div></div>
+        <button class="chat-close" aria-label="Close assistant" onclick="toggleChat()">✕</button>
+      </header>
+      <div class="chat-log" id="chatLog" role="log" aria-live="polite"></div>
+      <form class="chat-form" onsubmit="event.preventDefault(); sgSend();">
+        <label class="skip-link" for="chatInput">Type your question</label>
+        <input class="chat-input" id="chatInput" placeholder="e.g. How much should I save each month?" autocomplete="off" maxlength="300">
+        <button class="chat-send" type="submit" aria-label="Send message">Send</button>
+      </form>
+    </section>`;
+  document.body.appendChild(wrap);
+  sgAppend('bot', `<span>Hi! I'm the SaveGrow assistant — a small rule-based helper (no AI cloud, nothing you type leaves this page). Ask about saving goals, budgeting, compound interest, emergency funds, trips, debt, ISAs or investing.</span>${sgChips(['Savings goal','Budget help','Emergency fund'])}`);
+})();
