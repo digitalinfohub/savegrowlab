@@ -5,18 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07111f">
-  <title>SaveGrow Lab — Free Savings Calculators, Budgeting Tools & Money Guides (UK)</title>
-  <meta name="description" content="Free UK money tools that run privately in your browser: savings goal calculator, compound interest estimator, 50/30/20 budget planner, trip budget and emergency fund checkers, plus beginner-friendly saving and investing guides.">
+  <title>Savings Pace Comparison Tool — Compare Multiple Goals Side by Side</title>
+  <meta name="description" content="Free interactive worksheet: enter up to four savings goals with targets, timelines and interest rates, then compare the monthly cost of each and see which plan fits your budget. Runs entirely in your browser.">
   <meta name="author" content="SaveGrow Lab Editorial Team (Digital Infohub)">
-  <link rel="canonical" href="https://savegrowlab.co.uk/">
+  <link rel="canonical" href="https://savegrowlab.co.uk/tools/savings-pace-compare.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SaveGrow Lab">
-  <meta property="og:url" content="https://savegrowlab.co.uk/">
-  <meta property="og:title" content="SaveGrow Lab — Free Savings Calculators, Budgeting Tools & Money Guides (UK)">
-  <meta property="og:description" content="Free, private, in-browser money calculators and beginner-friendly UK guides on saving, budgeting and investing. No account required.">
+  <meta property="og:url" content="https://savegrowlab.co.uk/tools/savings-pace-compare.html">
+  <meta property="og:title" content="Savings Pace Comparison Tool — SaveGrow Lab">
+  <meta property="og:description" content="Compare up to four savings goals at once: monthly cost per goal, totals against your budget, and which target wins on time or money.">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="SaveGrow Lab — Free Savings Calculators & Money Guides">
-  <meta name="twitter:description" content="Free, private, in-browser money calculators and beginner-friendly UK guides on saving, budgeting and investing.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234ca9ff'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%2306111f'%3ESG%3C/text%3E%3C/svg%3E">
   <style>
     /* SaveGrow Lab — embedded design system (self-contained index).
@@ -291,60 +289,15 @@ details summary::marker { content: ""; }
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://savegrowlab.co.uk/#website",
-        "url": "https://savegrowlab.co.uk/",
-        "name": "SaveGrow Lab",
-        "description": "Free financial calculators, budgeting tools and beginner money education for UK savers.",
-        "publisher": { "@id": "https://savegrowlab.co.uk/#organization" },
-        "inLanguage": "en-GB"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://savegrowlab.co.uk/#organization",
-        "name": "SaveGrow Lab",
-        "url": "https://savegrowlab.co.uk/",
-        "email": "services@digitalinfohub.net",
-        "description": "Independent personal-finance education platform publishing free in-browser calculators and written guides on saving, budgeting and investing for a UK audience."
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Is SaveGrow Lab financial advice?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. The site provides general education and illustrative calculations only. It does not give personalised financial advice; for recommendations tailored to your circumstances, consult a qualified professional." }
-          },
-          {
-            "@type": "Question",
-            "name": "Are the calculators exact?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. They are planning tools based on simplified assumptions such as constant rates and regular monthly contributions. Real-world interest rates, platform fees, tax and market returns will differ from these estimates." }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I use the tools on mobile?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The layout, calculators and guides are fully responsive and designed to work on phones, tablets and desktops." }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you collect my financial data?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. There is no account or form to fill in, and every calculator runs locally in your browser. The numbers you type are never sent to our servers. Third-party advertising may use cookies as described in our Privacy Policy." }
-          },
-          {
-            "@type": "Question",
-            "name": "How accurate is the compound interest calculator?",
-            "acceptedAnswer": { "@type": "Answer", "text": "It applies a constant annual rate compounded monthly with fixed monthly contributions. That is a good approximation for cash savings and regular investing plans, but actual returns vary and investments can fall as well as rise." }
-          },
-          {
-            "@type": "Question",
-            "name": "How much should a UK beginner aim to keep as an emergency fund?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A common starting target is one month of essential costs, building gradually towards three to six months. Self-employed people or those with variable income often aim higher. Use the Emergency Fund tool to convert that target into a monthly saving amount." }
-          }
-        ]
-      }
-    ]
+    "@type": "WebApplication",
+    "name": "Savings Pace Comparison Tool",
+    "url": "https://savegrowlab.co.uk/tools/savings-pace-compare.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any (web-based)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "browserRequirements": "Requires JavaScript",
+    "description": "Compares up to four savings goals side by side, showing the monthly saving required for each and the combined total against a chosen budget.",
+    "publisher": { "@type": "Organization", "name": "SaveGrow Lab", "url": "https://savegrowlab.co.uk/" }
   }
   </script>
 </head>
@@ -361,11 +314,12 @@ details summary::marker { content: ""; }
         <a href="/guides/">Guides</a>
         <a href="#save">Save</a>
         <a href="#grow">Grow</a>
+        <a href="/tools/" aria-current="page">Calculators</a>
         <a href="/glossary.html">Glossary</a>
         <a href="/about.html">About</a>
         <a href="/contact.html">Contact</a>
       </nav>
-      <button class="nav-cta" onclick="openTool('savings')">Open Calculator</button>
+      <a class="nav-cta" href="/guides/">Read Guides</a>
       <button class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleMenu(this)">☰</button>
     </div>
   </header>
@@ -578,68 +532,59 @@ details summary::marker { content: ""; }
             <div>
               <div class="article-meta">Guide · Budgeting</div>
               Easy ways to save without making life miserable
-            </div>
-          </summary>
-          <div class="article-content">
-            <p>Saving works better when it becomes a system instead of a constant test of willpower. The aim is to make sensible actions easy and repeated, removing the emotional friction from financial decisions.</p>
-            <h4>1. Use a short pause for non-essentials</h4>
-            <p>A 24-hour pause gives you a chance to separate “I want this now” from “I still want this tomorrow”. It is not a ban on spending; it is a strategic speed bump that prevents buyer's remorse.</p>
-            <h4>2. Automate a small amount</h4>
-            <p>Moving a manageable amount to savings after payday can make saving happen before discretionary spending. A smaller amount you can repeat consistently is usually more useful than an unrealistic target you abandon after two months.</p>
-            <h4>3. Give the money a job</h4>
-            <p>“Save more” is vague and unmotivating. “Save £600 for a trip to Japan” is measurable and specific. Named goals make it easier to decide whether a random purchase is competing with something truly important to you.</p>
-            <p><strong>Go deeper:</strong> <a href="/guides/how-to-save-money.html">Read the full saving plan guide</a> — including worked examples and the maths behind monthly targets — or plug your numbers into the <button class="inline-tool-btn" onclick="openTool('savings')">Savings Goal calculator</button>.</p>
-          </div>
-        </details>
+    <div class="wrap">
+      <div class="tool-page">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/">Calculators</a> › Savings Pace Compare</nav>
+        <span class="eyebrow"><i></i> Interactive tool</span>
+        <h1 style="font-size:clamp(38px,5vw,58px);letter-spacing:-2.4px;margin:16px 0 14px;line-height:1.04">Savings pace <span class="grad">comparison tool.</span></h1>
+        <p class="hero-copy">Most planning tools assume you have one goal. Real life has several — a car repair fund, a holiday, a deposit, a wedding — all competing for the same monthly surplus. Enter up to four goals below and compare what each demands, together and separately.</p>
 
-        <details class="article-widget">
-          <summary>
-            <div>
-              <div class="article-meta">Guide · Psychology</div>
-              The £5 pricing heuristic explained
+        <div class="tool-panel" id="pacePanel">
+          <div class="field-grid" style="margin-bottom:16px">
+            <div class="field">
+              <label for="paceBudget">Monthly amount you can realistically save (£)</label>
+              <input id="paceBudget" type="number" value="250" min="0">
             </div>
-          </summary>
-          <div class="article-content">
-            <p>The £5 rule is intentionally simple: when walking around a shop, temporarily treat ordinary items as costing about £5 each. Eight items become a quick mental estimate of roughly £40.</p>
-            <h4>Why it can help</h4>
-            <p>People often assess purchases one at a time: “It is only £3.” Repeating that thought across several items makes the final total easy to underestimate. A basket-level estimate changes the question to: “Am I happy spending roughly this much today?”</p>
-            <h4>The limitation</h4>
-            <p>This is a heuristic, not a precise budgeting method for major purchases. Use actual prices and the trip budget calculator when the exact amount matters. The useful part is simply having a quick mental benchmark for everyday shopping.</p>
-            <p><strong>Try it:</strong> open the <button class="inline-tool-btn" onclick="openTool('five')">£5 Basket tool</button>, or see how a weekly habit adds up over a year in the <a href="/guides/how-to-save-money.html">saving plan guide</a>.</p>
+            <div class="field">
+              <label>&nbsp;</label>
+              <button class="btn secondary" type="button" onclick="renderPace()" style="width:100%">Recalculate all goals ↻</button>
+            </div>
           </div>
-        </details>
-
-        <details class="article-widget">
-          <summary>
-            <div>
-              <div class="article-meta">Guide · Growth</div>
-              Why compound interest is worth understanding
-            </div>
-          </summary>
-          <div class="article-content">
-            <p>Compound interest means you earn returns not just on the money you put in, but also on the returns you have already earned. Early years look slow; later years accelerate. That is why starting sooner with smaller amounts can beat starting later with larger ones.</p>
-            <h4>The catch</h4>
-            <p>Compounding works in both directions: debt interest compounds too, and investment returns are never guaranteed. Rates change, fees reduce net returns, and tax treatment depends on the wrapper you use (such as an ISA in the UK).</p>
-            <p><strong>Go deeper:</strong> <a href="/guides/compound-interest-explained.html">Read the full compound interest guide</a> with worked examples, or model your own numbers in the <button class="inline-tool-btn" onclick="openTool('interest')">Interest &amp; Growth calculator</button>.</p>
+          <div id="paceRows"></div>
+          <div class="calc-actions">
+            <span class="subtle">Blank or zero rows are ignored. Interest is optional — leave it at 0 for current accounts.</span>
+            <button class="btn primary" type="button" onclick="comparePace()">Compare my goals →</button>
           </div>
-        </details>
+          <div id="paceResult" role="status" aria-live="polite"></div>
+        </div>
 
-        <details class="article-widget">
-          <summary>
-            <div>
-              <div class="article-meta">Guide · Investing</div>
-              Investing options explained for beginners
-            </div>
-          </summary>
-          <div class="article-content">
-            <p>Investing involves accepting uncertainty in exchange for the possibility of a higher long-term return. Different assets have different risks, costs, and roles in a financial plan.</p>
-            <h4>Cash and savings</h4>
-            <p>Cash can suit short-term goals and emergency savings because the balance does not normally move with the stock market. Interest rates can change, and inflation can reduce purchasing power over long periods.</p>
-            <h4>Funds and ETFs</h4>
-            <p>Funds can hold many investments at once. Broad market funds can make diversification easier, while fees and the fund's underlying holdings still matter. Always check the ongoing charges figure (OCF).</p>
-            <h4>Before investing</h4>
-            <p>Consider your time horizon, emergency savings, diversification, fees, and how much loss you could tolerate. The right mix depends on individual circumstances, which this general-purpose educational site cannot assess.</p>
-            <p><strong>Go deeper:</strong> <a href="/guides/investing-for-beginners-uk.html">The full beginner investing guide</a>, <a href="/guides/isa-vs-savings-account-uk.html">ISA vs savings account comparison</a>, and official guidance from <a href="https://www.moneyhelper.org.uk/en/everyday-money/investing/investing-basics" target="_blank" rel="noopener noreferrer nofollow">MoneyHelper</a> and the <a href="https://www.fca.org.uk/consumers/investing-stocks-shares-start-guide" target="_blank" rel="noopener noreferrer nofollow">FCA</a>.</p>
+        <section class="article-page" style="padding:30px 0 20px">
+          <h2>How to read the results</h2>
+          <p>The tool answers three questions at once:</p>
+          <ul>
+            <li><strong>What does each goal cost per month?</strong> Using the same maths as our <a href="/#tools">Savings Goal calculator</a>: (target − starting balance), grown or reduced by any interest you entered, divided across the months remaining.</li>
+            <li><strong>Do they fit together?</strong> The combined monthly demand is compared against the saving budget you set at the top. If the total overshoots, the tool tells you by how much.</li>
+            <li><strong>Which goal is most efficient?</strong> The comparison highlights the goal that reaches its target <em>soonest relative to its size</em>, and the one eating the largest share of your budget — usually the right places to start trimming or renegotiating deadlines.</li>
+          </ul>
+          <div class="callout"><strong>Planning tip:</strong> if the combined demand exceeds your budget, don't abandon goals — stretch timelines first. A £1,200 goal over 12 months costs £100/month; over 18 months it costs £67. Deadlines are negotiable far more often than we assume. For the habit side of this, read <a href="/guides/how-to-save-money.html">how to save money consistently</a>.</div>
+
+          <h2>Worked example</h2>
+          <table class="article-table">
+            <thead><tr><th>Goal</th><th>Target</th><th>Already saved</th><th>Months</th><th>Rate</th><th>Monthly needed</th></tr></thead>
+            <tbody>
+              <tr><td>Car repairs</td><td>£900</td><td>£300</td><td>6</td><td>0%</td><td>£100.00</td></tr>
+              <tr><td>Holiday</td><td>£1,500</td><td>£300</td><td>10</td><td>2%</td><td>£118.60</td></tr>
+              <tr><td>Emergency top-up</td><td>£1,000</td><td>£600</td><td>8</td><td>4%</td><td>£47.42</td></tr>
+              <tr><td colspan="5"><strong>Combined demand</strong></td><td><strong>£266.02</strong></td></tr>
+            </tbody>
+          </table>
+          <p>Against a £250 budget, this plan overshoots by about £16 a month — roughly one takeaway. Either extend the holiday by two months or trim the rate assumption, and everything fits. Small adjustments beat abandoned plans.</p>
+
+          <div class="faq" style="margin-top:26px">
+            <details class="faq-item"><summary>Does this tool remember my goals?</summary><p>No. Like every SaveGrow Lab calculator it runs entirely in your browser — refresh the page and the fields reset. Nothing is transmitted or stored anywhere else. See our <a href="/privacy-policy.html">Privacy Policy</a>.</p></details>
+            <details class="faq-item"><summary>Why include interest at all if it's small?</summary><p>On short horizons interest barely moves the number, but on multi-year goals it can cut the required saving noticeably. Our <a href="/guides/compound-interest-explained.html">compound interest guide</a> shows exactly when it starts to matter.</p></details>
+            <details class="faq-item"><summary>Should I fund all goals at once?</summary><p>Only if the maths above says yes. A common, sane order is: small emergency buffer → matched employer pension contributions → high-cost debt → the rest by deadline urgency. The <a href="/guides/emergency-fund-uk.html">emergency fund guide</a> explains why the buffer comes first.</p></details>
+            <details class="faq-item"><summary>Where do ISAs fit?</summary><p>If a goal is beyond ~18 months and you're using your tax-free allowance, an ISA wrapper may beat a regular account. Our comparison of the mechanics is in <a href="/guides/isa-vs-savings-account-uk.html">ISAs vs savings accounts</a>.</p></details>
           </div>
         </details>
 
@@ -729,25 +674,30 @@ details summary::marker { content: ""; }
           <p><a href="/privacy-policy.html" style="color:var(--cyan)">Read the full Privacy Policy →</a> &nbsp;·&nbsp; <a href="/terms-and-conditions.html" style="color:var(--cyan)">Read the Terms &amp; Conditions →</a></p>
         </div>
 
-        <div class="legal-section" id="contact-us">
-          <h3>Contact Us</h3>
-          <p>We welcome feedback, questions, correction requests, and suggestions for new tools.</p>
-          <div class="contact-grid">
-            <div class="contact-item">
-              <strong>Email Support</strong>
-              <a href="mailto:services@digitalinfohub.net">services@digitalinfohub.net</a>
-            </div>
-            <div class="contact-item">
-              <strong>Response Time</strong>
-              We aim to respond to all inquiries within 2-3 business days.
-            </div>
+          <div class="cta-panel">
+            <div><h3>Want the single-goal version?</h3><p>The classic two-way savings calculator lives with the rest of the toolbox.</p></div>
+            <a class="btn primary" href="/tools/">Back to all calculators →</a>
           </div>
-          <p style="margin-top:16px"><a href="/contact.html" style="color:var(--cyan)">Use the contact form or see all ways to reach us →</a></p>
-        </div>
 
+          <h2>Keep exploring</h2>
+          <div class="related-grid">
+            <a href="/guides/how-to-save-money.html"><b>How to save money</b>A practical UK system for consistent saving.</a>
+            <a href="/guides/budgeting-guide-uk.html"><b>Budgeting guide</b>Find the surplus these goals depend on.</a>
+            <a href="/glossary.html"><b>Money glossary</b>Every term used here, in plain English.</a>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </main>
+
+  <!-- AD SLOT -->
+  <div class="wrap">
+    <div class="ad-container" style="margin-bottom:40px">
+      <span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5443646750699471" data-ad-slot="8451723433" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
 
   <footer>
     <div class="wrap">
@@ -780,17 +730,76 @@ details summary::marker { content: ""; }
     </div>
   </footer>
 
-  <!-- CALCULATOR WIDGETS (Hidden by default, opened via JS) -->
-  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" onclick="closeSheet(event)">
-    <div class="sheet" onclick="event.stopPropagation()">
-      <div class="sheet-head">
-        <div><div class="kicker">SaveGrow Lab</div><h2 id="sheetTitle">Tool</h2><p id="sheetSub"></p></div>
-        <button class="close" aria-label="Close" onclick="closeSheet()">✕</button>
-      </div>
-      <div id="sheetBody"></div>
-    </div>
-  </div>
-
   <script src="/assets/site.js"></script>
+  <script>
+    // Savings Pace Comparison — standalone multi-goal worksheet (all client-side)
+    const GOAL_COUNT = 4;
+    const defaults = [
+      {name:'Car repairs', target:900, current:300, months:6, rate:0},
+      {name:'Holiday', target:1500, current:300, months:10, rate:2},
+      {name:'Emergency top-up', target:1000, current:600, months:8, rate:4},
+      {name:'', target:0, current:0, months:0, rate:0}
+    ];
+    function renderPace(){
+      const host = document.getElementById('paceRows');
+      host.innerHTML = defaults.map((g,i)=>`
+        <fieldset style="border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 12px">
+          <legend style="font-size:12px;color:var(--muted-2);padding:0 6px">Goal ${i+1}</legend>
+          <div class="field-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+            <div class="field"><label for="gName${i}">Name</label><input id="gName${i}" type="text" value="${g.name.replace(/"/g,'&quot;')}" placeholder="e.g. Deposit"></div>
+            <div class="field"><label for="gTarget${i}">Target (£)</label><input id="gTarget${i}" type="number" min="0" value="${g.target}"></div>
+            <div class="field"><label for="gCurrent${i}">Saved so far (£)</label><input id="gCurrent${i}" type="number" min="0" value="${g.current}"></div>
+            <div class="field"><label for="gMonths${i}">Months</label><input id="gMonths${i}" type="number" min="0" value="${g.months}"></div>
+            <div class="field"><label for="gRate${i}">Interest % (optional)</label><input id="gRate${i}" type="number" min="0" step="0.1" value="${g.rate}"></div>
+          </div>
+        </fieldset>`).join('');
+    }
+    function monthlyFor(target,current,months,ratePct){
+      if(months<=0||target<=current) return null;
+      const r=Math.max(0,ratePct)/100/12;
+      if(r===0) return (target-current)/months;
+      const m=(target-current*Math.pow(1+r,months))*r/(Math.pow(1+r,months)-1);
+      return Number.isFinite(m)&&m>=0 ? m : null;
+    }
+    function comparePace(){
+      const out=document.getElementById('paceResult');
+      const budgetInput=Number(document.getElementById('paceBudget').value);
+      if(!Number.isFinite(budgetInput)||budgetInput<0){
+        out.innerHTML='<div class="result" style="background:rgba(255,143,143,.06);border-color:rgba(255,143,143,.25)"><div class="result-label">Check inputs</div><div class="result-value" style="font-size:18px;letter-spacing:0">Set a valid monthly saving budget</div><div class="result-meta">Enter a number of zero or more at the top of the panel.</div></div>';return;
+      }
+      const goals=[]; let bad=false;
+      for(let i=0;i<GOAL_COUNT;i++){
+        const t=Number(document.getElementById('gTarget'+i).value);
+        const c=Number(document.getElementById('gCurrent'+i).value);
+        const mo=Number(document.getElementById('gMonths'+i).value);
+        const ra=Number(document.getElementById('gRate'+i).value);
+        if([t,c,mo,ra].some(v=>!Number.isFinite(v)||v<0)){bad=true;continue}
+        if(t<=0) continue; // empty row
+        const name=(document.getElementById('gName'+i).value.trim())||('Goal '+(i+1));
+        const monthly=monthlyFor(t,c,Math.max(1,mo),ra);
+        if(monthly===null){goals.push({name,target:t,current:c,months:mo,monthly:0,done:true});}
+        else goals.push({name,target:t,current:c,months:Math.max(1,mo),monthly,done:false});
+      }
+      if(bad){out.innerHTML='<div class="result" style="background:rgba(255,143,143,.06);border-color:rgba(255,143,143,.25)"><div class="result-label">Check inputs</div><div class="result-value" style="font-size:18px;letter-spacing:0">One or more rows contain invalid numbers</div><div class="result-meta">Every filled goal needs a target, saved-so-far amount and months as non-negative numbers.</div></div>';return}
+      if(goals.length===0){out.innerHTML='<div class="result" style="background:rgba(255,181,100,.06);border-color:rgba(255,181,100,.25)"><div class="result-label">Nothing to compare</div><div class="result-value" style="font-size:18px;letter-spacing:0">Add at least one target</div><div class="result-meta">Give at least one goal a Target (£) above zero, then press Compare again.</div></div>';return}
+      const total=goals.reduce((s,g)=>s+g.monthly,0);
+      const active=goals.filter(g=>!g.done&&g.monthly>0);
+      const biggest=active.length?active.reduce((a,b)=>b.monthly>a.monthly?b:a):null;
+      const efficient=active.length?active.reduce((a,b)=>{
+        const pa=a.monthly/a.target, pb=b.monthly/b.target; return pb<pa?b:a;}):null;
+      const diff=total-budgetInput;
+      const verdict = diff<=0
+        ? `Fits your £${budgetInput.toFixed(2)} budget with £${(-diff).toFixed(2)} spare. That headroom could fund a fourth goal, or simply make the plan survive a bad month.`
+        : `Overshoots your £${budgetInput.toFixed(2)} budget by £${diff.toFixed(2)} a month. Extend the longest-timeline goal first, or move it into a separate “someday” list.`;
+      const rows=goals.map(g=>`<tr><td>${g.name}</td><td>${gbp(g.target)}</td><td>${g.months?g.months+' mo':'—'}</td><td>${g.done?'Reached ✓':gbp(g.monthly)}</td></tr>`).join('');
+      out.innerHTML=`<div class="result">
+        <div class="result-label">Combined monthly demand</div>
+        <div class="result-value">${gbp(total)}</div>
+        <div class="result-meta">${verdict}${biggest?` Largest single demand: <strong>${biggest.name}</strong> at ${gbp(biggest.monthly)}/mo.`:''}${efficient&&active.length>1?` Most budget-efficient: <strong>${efficient.name}</strong> (lowest cost per £1,000 of target).`:''}</div>
+        <table class="article-table" style="margin-top:16px"><thead><tr><th>Goal</th><th>Target</th><th>Timeline</th><th>Monthly needed</th></tr></thead><tbody>${rows}</tbody></table>
+      </div>`;
+    }
+    renderPace();
+  </script>
 </body>
 </html>
