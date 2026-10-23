@@ -122,9 +122,12 @@ function openTool(type){
 }
 
 function switchSavingsMode(mode){
-  document.getElementById('saveModeAmount').classList.toggle('active',mode==='amount');
-  document.getElementById('saveModeTime').classList.toggle('active',mode==='time');
-  document.getElementById('savingFields').innerHTML = mode==='amount' ? `
+  // Guarded: these elements only exist inside the Savings Goal modal.
+  document.getElementById('saveModeAmount')?.classList.toggle('active',mode==='amount');
+  document.getElementById('saveModeTime')?.classList.toggle('active',mode==='time');
+  const fields = document.getElementById('savingFields');
+  if(!fields) return;
+  fields.innerHTML = mode==='amount' ? `
     <div class="field-grid">
       <div class="field"><label>Target (£)</label><input id="sTarget" type="number" value="1500" min="0"></div>
       <div class="field"><label>Already saved (£)</label><input id="sCurrent" type="number" value="300" min="0"></div>
@@ -301,7 +304,7 @@ const SG_RULES = [
   {id:'about', kw:['who are you','what is savegrow','mission','who writes','about us'],
    reply:"SaveGrow Lab is an independent UK money-education project by the Digital Infohub editorial team: free in-browser calculators plus guides on saving, budgeting and beginner investing. We're not a regulated adviser. More on the <a href='/about.html'>About Us page</a>.",
    chips:[]},
-  {id:'tools-list', kw:['tool','calculator','what can you do','options','features'],
+  {id:'tools-list', kw:['tool','tools','calculator','calculators','what can you do','options','features'],
    reply:"Seven free tools run in your browser: Savings Goal, Interest &amp; Growth, Monthly Budget, Trip Budget, £5 Basket, Emergency Fund, and the multi-goal <a href='/tools/savings-pace-compare.html'>Savings Pace Comparison</a>. Describe your situation and I'll pick one for you.",
    chips:['Savings goal','Budget help','Emergency fund']},
   {id:'guides-list', kw:['guide','article','read','learn','blog','resource'],
@@ -312,7 +315,16 @@ const SG_FALLBACK = "I'm a simple rule-based helper, so I might not follow every
 
 function sgScore(text, kw){
   let s = 0;
-  for(const k of kw){ if(text.includes(k)) s += (k.includes(' ') ? 2 : 1); }
+  for(const k of kw){
+    if(k.includes(' ')){
+      // multi-word phrases are safe to match as plain substrings
+      if(text.includes(k)) s += 2;
+    } else {
+      // single words must match whole words only (avoids "fund" firing on "funding")
+      const re = new RegExp('\\b' + k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b');
+      if(re.test(text)) s += 1;
+    }
+  }
   return s;
 }
 function sgMatch(raw){

@@ -123,6 +123,8 @@ h2{margin:7px 0 0;font-size:34px;letter-spacing:-1.8px}
 /* IDEAS */
 .idea-card{padding:19px}.idea-num{color:var(--green);font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
 .idea-card h3{margin:10px 0 7px}.idea-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+.idea-card nav{margin-top:12px;font-size:13.5px;line-height:1.9}
+.idea-card nav a{color:var(--cyan)}
 .idea-chip{display:inline-block;margin-top:15px;color:#a9c6dc;font-size:11px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.04)}
 
 /* CRAWLABLE WIDGET ARTICLES (Details/Summary) */
@@ -355,9 +357,10 @@ details summary::marker { content: ""; }
         <span>Save<span>Grow</span> Lab</span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-        <a href="/#tools">Tools</a>
+        <a href="/tools/" aria-current="page">Tools</a>
         <a href="/guides/">Guides</a>
-        <a href="/tools/">Calculators</a>
+        <a href="#save">Save</a>
+        <a href="#grow">Grow</a>
         <a href="/glossary.html">Glossary</a>
         <a href="/about.html">About</a>
         <a href="/contact.html">Contact</a>
@@ -560,10 +563,11 @@ details summary::marker { content: ""; }
 
         <!-- TOPIC HUB: links each short explainer to its full guide and the matching calculator -->
         <nav class="hub-nav" aria-label="Money basics topic hub">
-          <a href="#tools">🧮 All calculators</a>
+          <a href="/tools/">🧮 All calculators</a>
           <a href="/guides/how-to-save-money.html">💰 Saving guide</a>
           <a href="/guides/compound-interest-explained.html">📈 Compound growth guide</a>
           <a href="/guides/emergency-fund-uk.html">🛟 Emergency fund guide</a>
+          <a href="/guides/budgeting-guide-uk.html">🗓️ UK budgeting guide</a>
           <a href="/guides/investing-for-beginners-uk.html">🌱 Investing guide</a>
           <a href="/guides/isa-vs-savings-account-uk.html">⚖️ ISA vs savings</a>
           <a href="/glossary.html">📖 Money glossary</a>
@@ -668,6 +672,50 @@ details summary::marker { content: ""; }
       </div>
     </section>
 
+    <!-- SITE DIRECTORY: every page of SaveGrow Lab, crawlable from the home page -->
+    <section id="site-map" aria-labelledby="siteMapHeading">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="kicker">Explore</div><h2 id="siteMapHeading">Everything on SaveGrow Lab.</h2></div>
+          <p>A complete directory of our free tools, guides and pages. Every link below goes somewhere real — no account required, everything runs in your browser.</p>
+        </div>
+        <div class="cards">
+          <article class="idea-card">
+            <div class="idea-num">Tools · 7 calculators</div>
+            <h3>Free money calculators</h3>
+            <p>Savings Goal, Interest &amp; Growth, Monthly Budget, Trip Budget, £5 Basket and Emergency Fund all open instantly from this page or the calculators hub.</p>
+            <nav aria-label="Tool links"><a href="/tools/">All calculators →</a><br><a href="/tools/savings-pace-compare.html">Savings pace comparison (multi-goal) →</a></nav>
+          </article>
+          <article class="idea-card">
+            <div class="idea-num">Guides · 6 in-depth articles</div>
+            <h3>Money guides &amp; education</h3>
+            <p>Beginner-friendly, UK-focused long reads researched against official sources.</p>
+            <nav aria-label="Guide links">
+              <a href="/guides/">Guides hub →</a><br>
+              <a href="/guides/how-to-save-money.html">How to save money →</a><br>
+              <a href="/guides/compound-interest-explained.html">Compound interest explained →</a><br>
+              <a href="/guides/emergency-fund-uk.html">Emergency funds (UK) →</a><br>
+              <a href="/guides/budgeting-guide-uk.html">UK budgeting guide →</a><br>
+              <a href="/guides/investing-for-beginners-uk.html">Investing for beginners →</a><br>
+              <a href="/guides/isa-vs-savings-account-uk.html">ISA vs savings account →</a>
+            </nav>
+          </article>
+          <article class="idea-card">
+            <div class="idea-num">About the site</div>
+            <h3>Who we are &amp; how to reach us</h3>
+            <p>Our mission, editorial standards and the people behind the project — plus ways to report an error or suggest a tool.</p>
+            <nav aria-label="Site pages">
+              <a href="/about.html">About Us →</a><br>
+              <a href="/contact.html">Contact form &amp; details →</a><br>
+              <a href="/glossary.html">Money glossary (40+ terms) →</a><br>
+              <a href="/privacy-policy.html">Privacy Policy →</a><br>
+              <a href="/terms-and-conditions.html">Terms &amp; Conditions →</a>
+            </nav>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- COMBINED LEGAL & CONTACT SECTION -->
     <section id="legal-contact">
       <div class="wrap">
@@ -712,9 +760,10 @@ details summary::marker { content: ""; }
           </div>
         </div>
         <nav class="footer-links" aria-label="Footer navigation">
-          <a href="/#tools">Tools</a>
           <a href="/tools/">All calculators</a>
+          <a href="/tools/savings-pace-compare.html">Savings pace comparison</a>
           <a href="/guides/">Guides hub</a>
+          <a href="/guides/budgeting-guide-uk.html">Budgeting guide</a>
           <a href="/glossary.html">Glossary</a>
           <a href="/about.html">About Us</a>
           <a href="/contact.html">Contact Us</a>
