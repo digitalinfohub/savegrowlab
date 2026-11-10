@@ -1,0 +1,6 @@
+# SaveGrow Lab
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://savegrowlab.co.uk/sitemap.xml

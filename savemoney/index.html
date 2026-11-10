@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06110d">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SaveGrow">
+  <meta name="format-detection" content="telephone=no">
+  <title>Savings Goal Calculator: How Much to Save Each Month | SaveGrow Lab</title>
+  <meta name="description" content="Free savings goal calculator. Work out the monthly amount needed to hit a target by a deadline, or how long your current saving will take. No sign-up, works on mobile.">
+  <meta name="author" content="SaveGrow Lab Editorial Team (Digital Infohub)">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://savegrowlab.co.uk/savemoney/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SaveGrow Lab">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://savegrowlab.co.uk/savemoney/">
+  <meta property="og:title" content="Savings Goal Calculator: How Much to Save Each Month | SaveGrow Lab">
+  <meta property="og:description" content="Free savings goal calculator. Work out the monthly amount needed to hit a target by a deadline, or how long your current saving will take. No sign-up, works on mobile.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&amp;w=1200&amp;h=630&amp;auto=format&amp;fit=crop">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Coins being added to a savings jar on a table">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Savings Goal Calculator: How Much to Save Each Month | SaveGrow Lab">
+  <meta name="twitter:description" content="Free savings goal calculator. Work out the monthly amount needed to hit a target by a deadline, or how long your current saving will take. No sign-up, works on mobile.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&amp;w=1200&amp;h=630&amp;auto=format&amp;fit=crop">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="/assets/icons/favicon-64.png">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/assets/site.css">
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Savings Goal Calculator",
+  "url": "https://savegrowlab.co.uk/savemoney/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en-GB",
+  "isAccessibleForFree": true,
+  "description": "Free savings goal calculator. Work out the monthly amount needed to hit a target by a deadline, or how long your current saving will take. No sign-up, works on mobile.",
+  "image": "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1200&h=630&auto=format&fit=crop",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SaveGrow Lab",
+    "url": "https://savegrowlab.co.uk/"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://savegrowlab.co.uk/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://savegrowlab.co.uk/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Savings Goal Calculator",
+      "item": "https://savegrowlab.co.uk/savemoney/"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this calculator store my numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The arithmetic runs inside your browser and nothing is sent anywhere. If you press “Save this plan”, the target and monthly amount are stored in your browser’s local storage so Penny can use them next time — you can clear that by clearing site data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include interest for a goal under two years?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not, or only a small amount. Interest on short horizons barely changes the monthly figure, and savings rates can fall. Use 0% for anything under 12 months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I miss a month?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Recalculate rather than give up. Spread the missed amount across the remaining months or extend the deadline by one. A plan that bends is a plan that survives."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I save for several goals at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — use the goal comparison tool to see what several goals cost together, and what to drop if the total is over budget."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use the Savings Goal Calculator",
+  "description": "Free savings goal calculator. Work out the monthly amount needed to hit a target by a deadline, or how long your current saving will take. No sign-up, works on mobile.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Enter your target",
+      "text": "Type the amount you need — the full cost of the thing, not a guess."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Add what you already have",
+      "text": "Any money already set aside for this goal. Leave it at zero if you are starting fresh."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Set your deadline and monthly amount",
+      "text": "Months tells the calculator how long you have. The monthly figure is what you can realistically put away."
+    }
+  ]
+}
+  </script>
+</head>
+<body data-penny-context="savings">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="SaveGrow Lab home"><img class="brand-logo" src="/assets/SGLOGO.png" width="120" height="60" alt="SaveGrow Lab" fetchpriority="high"><span class="brand-name">SaveGrow Lab</span></a>
+      <nav class="nav-desktop" aria-label="Main navigation"><a href="/tools/">Tools</a><a href="/guides/">Guides</a><a href="/assistant.html">Ask Penny</a><a href="/#install">Install app</a><a href="/glossary.html">Glossary</a><a href="/about.html">About</a></nav>
+      <div class="header-actions">
+        <a class="header-cta" href="/savemoney/">Start saving</a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer"><span aria-hidden="true">☰</span></button>
+      </div>
+    </div>
+  </header>
+  <div class="nav-drawer" id="navDrawer">
+    <div class="nav-sheet" role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="nav-sheet-head">
+        <a class="brand" href="/"><img class="brand-logo" src="/assets/SGLOGO.png" width="120" height="60" alt="SaveGrow Lab" fetchpriority="high"></a>
+        <button class="menu-btn" id="navClose" type="button" aria-label="Close menu">✕</button>
+      </div>
+      <a class="nav-item" href="/">🏡 Home</a>
+      <a class="nav-item" href="/tools/">🧮 All tools</a>
+      <div class="nav-sep"></div>
+      <a class="nav-item" href="/savemoney/">Savings goal</a><a class="nav-item" href="/budget/">Budget planner</a><a class="nav-item" href="/emergency-fund/">Emergency fund</a><a class="nav-item" href="/compound-interest/">Compound interest</a><a class="nav-item" href="/trip-budget/">Holiday budget</a><a class="nav-item" href="/quickmaths/">Quick maths</a>
+      <a class="nav-item" href="/tools/">See all 10 tools →</a>
+      <div class="nav-sep"></div>
+      <a class="nav-item" href="/guides/">📚 Guides</a>
+      <a class="nav-item" href="/assistant.html">💬 Ask Penny</a>
+      <a class="nav-item" href="/money-health-check/">✅ Money health check</a>
+      <a class="nav-item" href="/glossary.html">📖 Money glossary</a>
+      <a class="nav-item" href="/#install">📲 Install the app</a>
+      <div class="nav-sep"></div>
+      <a class="nav-item" href="/about.html">About us</a>
+      <a class="nav-item" href="/contact.html">Contact</a>
+      <a class="nav-item" href="/privacy-policy.html">Privacy policy</a>
+      <a class="nav-item" href="/terms-and-conditions.html">Terms &amp; conditions</a>
+      <p class="nav-note">Free tools, no account. Penny runs on your device — nothing you type is uploaded.</p>
+    </div>
+  </div>
+  <main id="main">
+    <div class="wrap">
+      <section class="page-hero">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><a href="/tools/">Tools</a><span aria-hidden="true">›</span><span style="margin:0">Savings Goal Calculator</span></nav>
+        <span class="eyebrow"><i></i>Savings goal calculator</span>
+        <h1>How much do I need to save each month?</h1>
+        <p class="hero-copy">Enter a target, what you have already, and your deadline. You get the exact monthly amount — plus how long your current pace would take. Everything is calculated on your phone or laptop, not on a server.</p>
+        <div class="tool-points"><span class="chip">✓ Instant answer</span><span class="chip">✓ Optional interest</span><span class="chip">✓ Saves your plan</span></div>
+      </section>
+      <div class="tool-page">
+
+      <form class="tool-panel" data-tool="savings" novalidate>
+        <div class="prefill-note" data-prefill-note></div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="svTarget">Savings target (£)</label>
+            <input id="svTarget" name="target" type="number" min="0" step="10" inputmode="decimal" value="1500">
+          </div>
+          <div class="field">
+            <label for="svSaved">Already saved (£)</label>
+            <input id="svSaved" name="saved" type="number" min="0" step="10" inputmode="decimal" value="0">
+          </div>
+          <div class="field">
+            <label for="svMonths">Months until you need it</label>
+            <input id="svMonths" name="months" type="number" min="1" max="600" step="1" inputmode="numeric" value="12">
+          </div>
+          <div class="field">
+            <label for="svMonthly">What you can save each month (£)</label>
+            <input id="svMonthly" name="monthly" type="number" min="0" step="10" inputmode="decimal" value="150">
+          </div>
+          <div class="field">
+            <label for="svRate">Interest rate % a year (optional)</label>
+            <input id="svRate" name="rate" type="number" min="0" step="0.1" inputmode="decimal" value="0">
+            <span class="hint">Leave at 0 for a current account. Use 3–5 for a savings account.</span>
+          </div>
+        </div>
+        <div class="calc-actions">
+          <span class="subtle">Private by design — no account, no upload.</span>
+          <button class="btn primary" type="submit">Calculate my monthly saving</button>
+        </div>
+        <div class="result" data-result role="status" aria-live="polite"></div>
+        <div class="mt-12" data-plan-save hidden>
+          <button class="btn secondary sm" type="button" data-save-plan>💾 Save this plan to my device</button>
+        </div>
+        <p class="disclaimer">Estimates assume equal contributions at the end of each month and a constant interest rate. Real rates move. This is a planning aid, not financial advice.</p>
+      </form>
+        <article class="article-page" id="guide" style="padding-top:14px">
+          <div class="kicker">The guide behind the tool</div>
+
+      <h2 id="how-it-works">What this calculator is actually doing</h2>
+      <p>The maths is deliberately boring: take the gap between your target and what you have already saved, then divide it by the months you have left. If you add an interest rate, the calculator solves the same sum backwards so the interest your money earns along the way reduces what you need to contribute.</p>
+      <p>With a 0% rate it is exactly <strong>(target − saved) ÷ months</strong>. At 4% over three years the monthly figure is meaningfully smaller, because the balance starts earning on itself. If you want to see why that happens, the <a href="/compound-interest/">compound interest calculator</a> shows the curve.</p>
+
+      <h2 id="worked-example">A worked example</h2>
+      <p>You want £1,500 for a holiday in 12 months and have £300 already. Without interest you need £100 a month. Add the £150 you can actually spare and the calculator says you will get there in 8 months instead — six months earlier than the deadline. That is the useful bit: the same numbers answer both “how much?” and “how long?”.</p>
+      <table class="article-table">
+        <thead><tr><th>Target</th><th>Saved</th><th>Deadline</th><th>Required</th><th>At £150/mo</th></tr></thead>
+        <tbody>
+          <tr><td>£1,500</td><td>£300</td><td>12 months</td><td>£100/mo</td><td>8 months</td></tr>
+          <tr><td>£5,000</td><td>£500</td><td>24 months</td><td>£187.50/mo</td><td>30 months</td></tr>
+          <tr><td>£800</td><td>£0</td><td>6 months</td><td>£133.33/mo</td><td>6 months</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>The deadline is negotiable.</strong> If the required monthly amount is painful, stretch the timeline before you abandon the goal. £1,500 over 12 months is £125; over 18 months it is £83. One extra season of waiting often makes a plan survive contact with real life.</div>
+
+      <h2 id="make-it-stick">How to make the number real</h2>
+      <ul>
+        <li><strong>Move it on payday.</strong> A standing order for the day after your salary lands beats a promise to transfer “what is left”.</li>
+        <li><strong>Use a separate account.</strong> Money attached to your debit card gets spent. A transfer that takes a day to reverse is a feature.</li>
+        <li><strong>Name the pot.</strong> “Japan trip” is harder to raid than “Savings”.</li>
+        <li><strong>Save the plan.</strong> Press the save button and Penny will remember the target on this device.</li>
+        <li><strong>Check in monthly.</strong> Two minutes on the first Sunday is enough to adjust the figure.</li>
+      </ul>
+      <p>If the monthly amount still does not fit, fix the budget first. The <a href="/budget/">budget planner</a> shows where the money should come from; the <a href="/guides/how-to-save-money.html">saving guide</a> covers the habit side.</p>
+
+      <h2 id="common-mistakes">Three mistakes this tool prevents</h2>
+      <p><strong>1. Saving for a round number instead of the real cost.</strong> A £1,200 holiday usually costs £1,500 once food, transfers and a buffer are included.</p>
+      <p><strong>2. Ignoring money you already have.</strong> Starting from zero when £300 is already set aside makes the plan look harder than it is.</p>
+      <p><strong>3. Using an interest rate you cannot get.</strong> Be conservative. A 5% assumption on a one-year goal is optimism, not planning.</p>
+          <h2 id="faq">Frequently asked questions</h2>
+<div class="faq"><details class="faq-item"><summary>Does this calculator store my numbers?</summary><p>No. The arithmetic runs inside your browser and nothing is sent anywhere. If you press “Save this plan”, the target and monthly amount are stored in your browser’s local storage so Penny can use them next time — you can clear that by clearing site data.</p></details><details class="faq-item"><summary>Should I include interest for a goal under two years?</summary><p>Usually not, or only a small amount. Interest on short horizons barely changes the monthly figure, and savings rates can fall. Use 0% for anything under 12 months.</p></details><details class="faq-item"><summary>What if I miss a month?</summary><p>Recalculate rather than give up. Spread the missed amount across the remaining months or extend the deadline by one. A plan that bends is a plan that survives.</p></details><details class="faq-item"><summary>Can I save for several goals at once?</summary><p>Yes — use the <a href="/savings-pace/">goal comparison tool</a> to see what several goals cost together, and what to drop if the total is over budget.</p></details></div>
+<h2>Related tools and guides</h2>
+  <div class="link-grid"><a href="/guides/how-to-save-money.html">Guide: how to save money consistently</a><a href="/budget/">Budget planner (50/30/20)</a><a href="/savings-pace/">Compare several savings goals</a><a href="/compound-interest/">Compound interest calculator</a></div>
+<div class="share-row">
+    <span class="label">Send this tool to someone</span>
+    <button class="share-btn" type="button" data-share="native">↗ Share</button>
+    <button class="share-btn" type="button" data-share="copy">⧉ Copy link</button>
+  </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/assets/SGLOGO.png" width="120" height="60" alt="SaveGrow Lab" loading="lazy">
+          <p>Free, private money tools and plain-English UK guides. Save smarter, grow steadily.</p>
+          <div class="btn-row" style="margin-top:12px">
+            <button class="btn secondary sm" type="button" data-install-app>📲 Install app</button>
+            <button class="btn secondary sm" type="button" data-open-penny>💬 Ask Penny</button>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Popular tools</h4><a href="/savemoney/">Savings goal</a><a href="/budget/">Budget planner</a><a href="/emergency-fund/">Emergency fund</a><a href="/compound-interest/">Compound interest</a><a href="/trip-budget/">Holiday budget</a></div>
+        <div class="footer-col"><h4>Learn</h4><a href="/guides/">All guides</a><a href="/money-health-check/">Money health check</a><a href="/glossary.html">Glossary</a><a href="/assistant.html">Ask Penny</a><a href="/#install">Install as app</a></div>
+        <div class="footer-col"><h4>Site</h4><a href="/about.html">About us</a><a href="/contact.html">Contact</a><a href="/privacy-policy.html">Privacy policy</a><a href="/terms-and-conditions.html">Terms & conditions</a></div>
+      </div>
+      <div class="footer-bottom">
+        <div>
+          &copy; <span data-year>2026</span> SaveGrow Lab (Digital Infohub). All rights reserved.<br>
+          Advertising is served by Adsterra. We are reviewing other ad partners and will update our policy before using them.
+        </div>
+        <div class="fineprint">
+          <strong>Disclaimer:</strong> SaveGrow Lab provides general educational information and planning tools, not personalised financial advice. Investments can fall as well as rise. Calculator results are estimates based on rounded assumptions and the figures you enter. Check current tax rules with HMRC and the FCA before making significant decisions. See our <a href="/terms-and-conditions.html">terms</a>.
+        </div>
+      </div>
+    </div>
+  </footer>
+  <nav class="tabbar" aria-label="Quick navigation">
+    <a href="/"> <b aria-hidden="true">🏡</b> Home</a>
+    <a href="/tools/"> <b aria-hidden="true">🧮</b> Tools</a>
+    <a href="/guides/"> <b aria-hidden="true">📚</b> Guides</a>
+    <a href="/assistant.html"> <b aria-hidden="true">💬</b> Penny</a>
+  </nav>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

@@ -1,77 +1,91 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5443646750699471" crossorigin="anonymous"></script>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07111f">
-  <title>Money Glossary — 40+ UK Personal Finance Terms Explained Simply | SaveGrow Lab</title>
-  <meta name="description" content="A plain-English glossary of more than 40 UK personal finance terms — AER, APR, ISA, OCF, FSCS, compound interest, emergency fund and more — each linked to the guide or calculator that puts it to use.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06110d">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SaveGrow">
+  <meta name="format-detection" content="telephone=no">
+  <title>Money Glossary: 50+ UK Financial Terms in Plain English | SaveGrow Lab</title>
+  <meta name="description" content="Plain-English definitions of UK money terms — AER, APR, FSCS, ISA, OCF, liquidity, sinking fund and more — each linked to the calculator or guide that uses it.">
   <meta name="author" content="SaveGrow Lab Editorial Team (Digital Infohub)">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://savegrowlab.co.uk/glossary.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SaveGrow Lab">
+  <meta property="og:locale" content="en_GB">
   <meta property="og:url" content="https://savegrowlab.co.uk/glossary.html">
-  <meta property="og:title" content="Money Glossary — 40+ UK Personal Finance Terms Explained Simply">
-  <meta property="og:description" content="Every jargon word our calculators and guides use, defined in plain English with a link to where you'll meet it in practice.">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234ca9ff'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%2306111f'%3ESG%3C/text%3E%3C/svg%3E">
+  <meta property="og:title" content="Money Glossary: 50+ UK Financial Terms in Plain English | SaveGrow Lab">
+  <meta property="og:description" content="Plain-English definitions of UK money terms — AER, APR, FSCS, ISA, OCF, liquidity, sinking fund and more — each linked to the calculator or guide that uses it.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&amp;w=1200&amp;h=630&amp;auto=format&amp;fit=crop">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A reference library of books">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Money Glossary: 50+ UK Financial Terms in Plain English | SaveGrow Lab">
+  <meta name="twitter:description" content="Plain-English definitions of UK money terms — AER, APR, FSCS, ISA, OCF, liquidity, sinking fund and more — each linked to the calculator or guide that uses it.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&amp;w=1200&amp;h=630&amp;auto=format&amp;fit=crop">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="/assets/icons/favicon-64.png">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/assets/site.css">
-  <style>
-    /* Glossary-specific styles (search box + definition cards) */
-    .glossary-search{display:flex;gap:10px;align-items:center;margin:22px 0 6px;flex-wrap:wrap}
-    .glossary-search input{flex:1;min-width:240px;padding:13px 16px;border:1px solid var(--line-strong);border-radius:12px;background:#0c2137;color:#fff;outline:none;font-size:15px}
-    .glossary-search input:focus{border-color:rgba(103,232,249,.45);box-shadow:0 0 0 3px rgba(103,232,249,.08)}
-    .glossary-count{font-size:12px;color:var(--muted-2)}
-    .az-nav{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 26px}
-    .az-nav a{font-size:12px;font-weight:800;color:#ccecff;border:1px solid rgba(87,170,248,.22);background:rgba(87,170,248,.08);border-radius:8px;padding:5px 9px}
-    .az-nav a:hover{background:rgba(87,170,248,.18)}
-    .az-nav a.disabled{opacity:.35;pointer-events:none}
-    .term-group{margin-bottom:34px}
-    .term-letter{font-size:26px;letter-spacing:-1px;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px}
-    dl.terms{margin:0}
-    dl.terms dt{font-weight:850;font-size:16px;color:var(--text);margin-top:18px}
-    dl.terms dt .tag{margin-left:8px;font-size:10px;color:#8ea2b8;border:1px solid rgba(255,255,255,.07);padding:4px 7px;border-radius:999px;vertical-align:middle;font-weight:600}
-    dl.terms dd{margin:6px 0 0;color:var(--muted);font-size:14.5px;line-height:1.7;max-width:820px}
-    dl.terms dd a{color:var(--cyan)}
-    .no-results{padding:26px;border:1px dashed var(--line-strong);border-radius:16px;color:var(--muted);display:none}
-  </style>
+  
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "DefinedTermSet",
-    "name": "SaveGrow Lab Money Glossary",
-    "url": "https://savegrowlab.co.uk/glossary.html",
-    "description": "Plain-English definitions of over 40 UK personal finance terms used across our calculators and guides.",
-    "inLanguage": "en-GB",
-    "publisher": { "@type": "Organization", "name": "SaveGrow Lab", "url": "https://savegrowlab.co.uk/" }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "SaveGrow Lab money glossary",
+  "url": "https://savegrowlab.co.uk/glossary.html",
+  "inLanguage": "en-GB",
+  "description": "Plain-English definitions of UK personal-finance terms."
+}
   </script>
 </head>
-<body>
-  <a class="skip-link" href="#top">Skip to content</a>
-  <header class="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="/" aria-label="SaveGrow Lab home">
-        <span class="brand-mark" aria-hidden="true">SG</span>
-        <span>Save<span>Grow</span> Lab</span>
-      </a>
-      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-        <a href="/#tools">Tools</a>
-        <a href="/guides/">Guides</a>
-        <a href="/tools/">Calculators</a>
-        <a href="/glossary.html" aria-current="page">Glossary</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-      </nav>
-      <a class="nav-cta" href="/guides/">Read Guides</a>
-      <button class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleMenu(this)">☰</button>
+<body data-penny-context="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="SaveGrow Lab home"><img class="brand-logo" src="/assets/SGLOGO.png" width="120" height="60" alt="SaveGrow Lab" fetchpriority="high"><span class="brand-name">SaveGrow Lab</span></a>
+      <nav class="nav-desktop" aria-label="Main navigation"><a href="/tools/">Tools</a><a href="/guides/">Guides</a><a href="/assistant.html">Ask Penny</a><a href="/#install">Install app</a><a href="/glossary.html">Glossary</a><a href="/about.html">About</a></nav>
+      <div class="header-actions">
+        <a class="header-cta" href="/savemoney/">Start saving</a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer"><span aria-hidden="true">☰</span></button>
+      </div>
     </div>
   </header>
-
-  <main id="top">
-    <div class="wrap">
-      <section class="page-hero">
+  <div class="nav-drawer" id="navDrawer">
+    <div class="nav-sheet" role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="nav-sheet-head">
+        <a class="brand" href="/"><img class="brand-logo" src="/assets/SGLOGO.png" width="120" height="60" alt="SaveGrow Lab" fetchpriority="high"></a>
+        <button class="menu-btn" id="navClose" type="button" aria-label="Close menu">✕</button>
+      </div>
+      <a class="nav-item" href="/">🏡 Home</a>
+      <a class="nav-item" href="/tools/">🧮 All tools</a>
+      <div class="nav-sep"></div>
+      <a class="nav-item" href="/savemoney/">Savings goal</a><a class="nav-item" href="/budget/">Budget planner</a><a class="nav-item" href="/emergency-fund/">Emergency fund</a><a class="nav-item" href="/compound-interest/">Compound interest</a><a class="nav-item" href="/trip-budget/">Holiday budget</a><a class="nav-item" href="/quickmaths/">Quick maths</a>
+      <a class="nav-item" href="/tools/">See all 10 tools →</a>
+      <div class="nav-sep"></div>
+      <a class="nav-item" href="/guides/">📚 Guides</a>
+      <a class="nav-item" href="/assistant.html">💬 Ask Penny</a>
+      <a class="nav-item" href="/money-health-check/">✅ Money health check</a>
+      <a class="nav-item" href="/glossary.html">📖 Money glossary</a>
+      <a class="nav-item" href="/#install">📲 Install the app</a>
+      <div class="nav-sep"></div>
+      <a class="nav-item" href="/about.html">About us</a>
+      <a class="nav-item" href="/contact.html">Contact</a>
+      <a class="nav-item" href="/privacy-policy.html">Privacy policy</a>
+      <a class="nav-item" href="/terms-and-conditions.html">Terms &amp; conditions</a>
+      <p class="nav-note">Free tools, no account. Penny runs on your device — nothing you type is uploaded.</p>
+    </div>
+  </div>
+  <main id="main">
+    <div class="wrap" data-glossary>
+<section class="page-hero">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Glossary</nav>
         <span class="eyebrow"><i></i> Reference</span>
         <h1>The SaveGrow <span class="grad">money glossary</span></h1>
@@ -109,7 +123,7 @@
             <dt data-term>Bonds<span class="tag">Investing</span></dt>
             <dd data-term>Loans you make to a government or company, repaid at maturity with regular interest (“coupon”). Generally less volatile than shares but sensitive to interest rates — see the <a href="/guides/investing-for-beginners-uk.html">beginner investing guide</a>.</dd>
             <dt data-term>Budget<span class="tag">Planning</span></dt>
-            <dd data-term>A plan for your income before you spend it, usually split into needs, wants and saving. Frameworks like 50/30/20 are explained in the <a href="/guides/budgeting-guide-uk.html">UK budgeting guide</a> and calculated instantly in the <a href="/tools/?tool=budget">budget tool</a>.</dd>
+            <dd data-term>A plan for your income before you spend it, usually split into needs, wants and saving. Frameworks like 50/30/20 are explained in the <a href="/guides/budgeting-guide-uk.html">UK budgeting guide</a> and calculated instantly in the <a href="/budget/">budget tool</a>.</dd>
           </dl>
         </div>
 
@@ -117,7 +131,7 @@
           <h2 class="term-letter">C</h2>
           <dl class="terms">
             <dt data-term>Compound interest<span class="tag">Growth</span></dt>
-            <dd data-term>Earning returns on your previous returns as well as on your original money. It is the single most important maths idea in long-term saving — fully worked through in the <a href="/guides/compound-interest-explained.html">compound interest guide</a> and modelled in the <a href="/tools/?tool=interest">interest calculator</a>.</dd>
+            <dd data-term>Earning returns on your previous returns as well as on your original money. It is the single most important maths idea in long-term saving — fully worked through in the <a href="/guides/compound-interest-explained.html">compound interest guide</a> and modelled in the <a href="/compound-interest/">interest calculator</a>.</dd>
             <dt data-term>Contribution<span class="tag">Saving</span></dt>
             <dd data-term>What you put into a pot or account, as opposed to what it grows into. In the savings goal calculator, target minus contributions equals growth.</dd>
             <dt data-term>Credit score<span class="tag">Borrowing</span></dt>
@@ -141,7 +155,7 @@
           <h2 class="term-letter">E</h2>
           <dl class="terms">
             <dt data-term>Emergency fund<span class="tag">Safety net</span></dt>
-            <dd data-term>Cash deliberately set aside to cover job loss, repairs or unexpected bills without borrowing. How to size and store one is the whole subject of the <a href="/guides/emergency-fund-uk.html">UK emergency fund guide</a>; measure yours with the <a href="/tools/?tool=emergency">coverage checker</a>.</dd>
+            <dd data-term>Cash deliberately set aside to cover job loss, repairs or unexpected bills without borrowing. How to size and store one is the whole subject of the <a href="/guides/emergency-fund-uk.html">UK emergency fund guide</a>; measure yours with the <a href="/emergency-fund/">coverage checker</a>.</dd>
             <dt data-term>Essential costs<span class="tag">Budgeting</span></dt>
             <dd data-term>What you must pay to stay housed, fed, healthy and working: rent/mortgage, council tax, utilities, food, travel. They set both your budget's 50% column and your emergency fund's true size.</dd>
             <dt data-term>ETF (Exchange-Traded Fund)<span class="tag">Investing</span></dt>
@@ -183,7 +197,7 @@
             <dt data-term>Inflation<span class="tag">Purchasing power</span></dt>
             <dd data-term>The general rise in prices, which quietly shrinks what untouched cash buys each year. It is the main argument for putting long-horizon money into growth assets rather than a current account.</dd>
             <dt data-term>Interest<span class="tag">Both directions</span></dt>
-            <dd data-term>The price of money: paid to you on savings, charged by you on borrowing. Our <a href="/tools/?tool=interest">calculator</a> models simple versus compound interest side by side.</dd>
+            <dd data-term>The price of money: paid to you on savings, charged by you on borrowing. Our <a href="/compound-interest/">calculator</a> models simple versus compound interest side by side.</dd>
             <dt data-term>ISA (Individual Savings Account)<span class="tag">UK tax wrapper</span></dt>
             <dd data-term>A UK wrapper letting you earn interest, dividends and capital gains free of HMRC tax up to the annual allowance. Cash ISA versus ordinary savings is compared in the <a href="/guides/isa-vs-savings-account-uk.html">ISA vs savings guide</a>.</dd>
           </dl>
@@ -203,7 +217,7 @@
             <dt data-term>Main residence<span class="tag">Property</span></dt>
             <dd data-term>The home you normally live in — relevant to stamp duty, capital gains exemptions and any discussion of property as an investment.</dd>
             <dt data-term>Milestone<span class="tag">Goals</span></dt>
-            <dd data-term>A checkpoint inside a bigger goal (first £500, then one month of costs). Milestones make multi-year plans feel real and are the psychology behind the <a href="/tools/savings-pace-compare.html">pace comparison tool</a>.</dd>
+            <dd data-term>A checkpoint inside a bigger goal (first £500, then one month of costs). Milestones make multi-year plans feel real and are the psychology behind the <a href="/savings-pace/">pace comparison tool</a>.</dd>
           </dl>
         </div>
 
@@ -239,7 +253,7 @@
           <h2 class="term-letter">R</h2>
           <dl class="terms">
             <dt data-term>Regular saver / direct debit savings<span class="tag">Savings</span></dt>
-            <dd data-term>Accounts designed around a fixed monthly deposit, sometimes with bonus rates. A natural pairing with the <a href="/tools/?tool=savings">savings goal calculator</a>'s “monthly → time” mode.</dd>
+            <dd data-term>Accounts designed around a fixed monthly deposit, sometimes with bonus rates. A natural pairing with the <a href="/savemoney/">savings goal calculator</a>'s “monthly → time” mode.</dd>
             <dt data-term>Risk tolerance<span class="tag">Behaviour</span></dt>
             <dd data-term>How much paper loss you can endure without panic-selling. It constrains sensible portfolio design more than any spreadsheet — covered in the <a href="/guides/investing-for-beginners-uk.html">beginner guide</a>.</dd>
           </dl>
@@ -267,7 +281,7 @@
             <dt data-term>Target date<span class="tag">Goals</span></dt>
             <dd data-term>The deadline attached to a saving goal. Goals without dates compete equally against impulse purchases; dated goals win arguments with yourself.</dd>
             <dt data-term>Trial balance / buffer<span class="tag">Travel &amp; planning</span></dt>
-            <dd data-term>A percentage added to estimates for surprises — the 10–15% contingency built into the <a href="/tools/?tool=travel">trip budget calculator</a>.</dd>
+            <dd data-term>A percentage added to estimates for surprises — the 10–15% contingency built into the <a href="/trip-budget/">trip budget calculator</a>.</dd>
           </dl>
         </div>
 
@@ -299,12 +313,6 @@
       </section>
 
       <!-- AD SLOT -->
-      <div class="ad-container" style="margin-bottom:40px">
-        <span class="ad-label">Advertisement</span>
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5443646750699471" data-ad-slot="8451723433" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
       <section class="cta-panel" aria-label="Keep exploring" style="margin-bottom:50px">
         <div>
           <div class="kicker">Put the words to work</div>
@@ -316,93 +324,49 @@
           <a class="btn secondary" href="/guides/">Browse guides</a>
         </div>
       </section>
-    </div>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div class="footer-row">
-        <div>
-          <strong style="color:#dce9f5; font-size: 16px;">SaveGrow Lab</strong>
-          <div style="margin-top:8px; max-width: 300px;">Save smarter. Grow steadily. Free financial tools and education for everyone.</div>
-          <div style="margin-top: 12px; font-size: 12px; color: var(--muted-2);">
-            Made by <a href="https://digitalinfohub.net" target="_blank" rel="noopener noreferrer nofollow" style="color:var(--cyan);">Digital Infohub</a>
+      <section class="section tight">
+        <div class="cta-panel">
+          <div><h3>A definition is the start — a number is the point.</h3><p>Put the jargon to work in one of the calculators, or ask Penny to explain it in plain English.</p></div>
+          <div class="btn-row" style="margin-top:0">
+            <a class="btn primary" href="/tools/">Open a tool</a>
+            <button class="btn secondary" type="button" data-open-penny>Ask Penny</button>
           </div>
         </div>
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="/#tools">Tools</a>
-          <a href="/tools/">All calculators</a>
-          <a href="/guides/">Guides hub</a>
-          <a href="/glossary.html" aria-current="page">Glossary</a>
-          <a href="/about.html">About Us</a>
-          <a href="/contact.html">Contact Us</a>
-          <a href="/privacy-policy.html">Privacy Policy</a>
-          <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
-        </nav>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/assets/SGLOGO.png" width="120" height="60" alt="SaveGrow Lab" loading="lazy">
+          <p>Free, private money tools and plain-English UK guides. Save smarter, grow steadily.</p>
+          <div class="btn-row" style="margin-top:12px">
+            <button class="btn secondary sm" type="button" data-install-app>📲 Install app</button>
+            <button class="btn secondary sm" type="button" data-open-penny>💬 Ask Penny</button>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Popular tools</h4><a href="/savemoney/">Savings goal</a><a href="/budget/">Budget planner</a><a href="/emergency-fund/">Emergency fund</a><a href="/compound-interest/">Compound interest</a><a href="/trip-budget/">Holiday budget</a></div>
+        <div class="footer-col"><h4>Learn</h4><a href="/guides/">All guides</a><a href="/money-health-check/">Money health check</a><a href="/glossary.html">Glossary</a><a href="/assistant.html">Ask Penny</a><a href="/#install">Install as app</a></div>
+        <div class="footer-col"><h4>Site</h4><a href="/about.html">About us</a><a href="/contact.html">Contact</a><a href="/privacy-policy.html">Privacy policy</a><a href="/terms-and-conditions.html">Terms & conditions</a></div>
       </div>
-      <div class="fineprint">
-        <strong>Disclaimer:</strong> SaveGrow Lab provides general educational information and planning tools, not personalised financial advice. Investment values can fall as well as rise, and you may get back less than you invested. Tax rules depend on individual circumstances and change over time — verify current figures with HMRC and the FCA.
-      </div>
-      <div style="margin-top: 20px; font-size: 11px; color: var(--muted-2);">
-        &copy; <span id="year">2026</span> SaveGrow Lab (Digital Infohub). All rights reserved. Advertising served by Google AdSense.
+      <div class="footer-bottom">
+        <div>
+          &copy; <span data-year>2026</span> SaveGrow Lab (Digital Infohub). All rights reserved.<br>
+          Advertising is served by Adsterra. We are reviewing other ad partners and will update our policy before using them.
+        </div>
+        <div class="fineprint">
+          <strong>Disclaimer:</strong> SaveGrow Lab provides general educational information and planning tools, not personalised financial advice. Investments can fall as well as rise. Calculator results are estimates based on rounded assumptions and the figures you enter. Check current tax rules with HMRC and the FCA before making significant decisions. See our <a href="/terms-and-conditions.html">terms</a>.
+        </div>
       </div>
     </div>
   </footer>
-
-  <script src="/assets/site.js"></script>
-  <script>
-  /* Glossary helpers: live filter + auto-built A–Z index. Runs after site.js. */
-  (function(){
-    const groups = [...document.querySelectorAll('.term-group')];
-    const countEl = document.getElementById('termCount');
-    const search = document.getElementById('termSearch');
-    const noRes = document.getElementById('noResults');
-    const az = document.getElementById('azNav');
-    const total = document.querySelectorAll('dl.terms dt').length;
-
-    // Build the A–Z bar from the actual letters present.
-    groups.forEach(g=>{
-      const letter = g.id.replace('letter-','');
-      const a = document.createElement('a');
-      a.href = '#' + g.id; a.textContent = letter;
-      az.appendChild(a);
-    });
-
-    function updateCount(shown){
-      countEl.textContent = shown === total ? `${total} terms` : `${shown} of ${total} terms`;
-    }
-
-    function filter(q){
-      q = q.trim().toLowerCase();
-      let shownTotal = 0;
-      groups.forEach(g=>{
-        let shownInGroup = 0;
-        g.querySelectorAll('dt').forEach(dt=>{
-          const dd = dt.nextElementSibling;
-          const hit = !q || dt.textContent.toLowerCase().includes(q) || (dd && dd.textContent.toLowerCase().includes(q));
-          dt.style.display = hit ? '' : 'none';
-          if(dd && dd.tagName==='DD') dd.style.display = hit ? '' : 'none';
-          if(hit) shownInGroup++;
-        });
-        g.style.display = shownInGroup ? '' : 'none';
-        shownTotal += shownInGroup;
-      });
-      az.querySelectorAll('a').forEach(a=>{
-        const g = document.getElementById(a.getAttribute('href').slice(1));
-        a.classList.toggle('disabled', g && g.style.display === 'none');
-      });
-      noRes.style.display = shownTotal ? 'none' : 'block';
-      updateCount(shownTotal);
-    }
-
-    if(search){
-      search.addEventListener('input', ()=>filter(search.value));
-      // Allow deep links like /glossary.html?q=AER
-      const q = new URLSearchParams(location.search).get('q');
-      if(q){ search.value = q; filter(q); }
-    }
-    updateCount(total);
-  })();
-  </script>
+  <nav class="tabbar" aria-label="Quick navigation">
+    <a href="/"> <b aria-hidden="true">🏡</b> Home</a>
+    <a href="/tools/"> <b aria-hidden="true">🧮</b> Tools</a>
+    <a href="/guides/"> <b aria-hidden="true">📚</b> Guides</a>
+    <a href="/assistant.html"> <b aria-hidden="true">💬</b> Penny</a>
+  </nav>
+  <script src="/assets/site.js" defer></script>
 </body>
 </html>
