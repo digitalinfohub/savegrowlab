@@ -1,6 +1,1 @@
-# SaveGrow Lab — ads.txt
-# Display advertising on this site is served by Adsterra.
-# Adsterra is a direct advertising network and does not require a publisher
-# ads.txt entry. We are reviewing other advertising partners; before any new
-# partner is enabled, its authorised seller record will be added here and the
-# privacy policy will be updated.
+google.com, pub-5443646750699471, DIRECT, f08c47fec0942fa0
