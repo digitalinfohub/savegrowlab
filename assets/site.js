@@ -310,7 +310,7 @@
     {
       id: 'compound', kw: ['compound', 'interest', 'aer', 'growth', 'invest', 'etf', 'stocks', 'shares', 'isa', 'pension', 'risk'],
       reply: 'Compound growth rewards time more than amount. Small monthly contributions over many years beat big lump sums added late.',
-      links: [{ label: 'Open the compound interest calculator', href: TOOL_PAGES.compound }, { label: 'Guide: compound interest with real numbers', href: '/guides/compound-interest-explained.html' }, { label: 'Guide: investing for beginners', href: '/guides/investing-for-beginners-uk.html' }],
+      links: [{ label: 'Open the compound interest calculator', href: TOOL_PAGES.compound }, { label: 'Investing starter: mix and fees', href: '/invest/' }, { label: 'Guide: compound interest with real numbers', href: '/guides/compound-interest-explained.html' }, { label: 'Guide: investing for beginners', href: '/guides/investing-for-beginners-uk.html' }],
       chips: []
     },
     {
@@ -329,6 +329,24 @@
       id: 'subscriptions', kw: ['subscription', 'subscriptions', 'netflix', 'spotify', 'recurring', 'direct debit', 'free trial', 'membership'],
       reply: 'Subscriptions are designed to be forgotten. List every recurring payment once, multiply by 12, and cancel the one you would not buy again today.',
       links: [{ label: 'Open the subscription audit', href: TOOL_PAGES.subscriptions }, { label: 'Guide: the subscription audit', href: '/guides/subscription-audit-guide.html' }],
+      chips: []
+    },
+    {
+      id: 'autopilot', kw: ['autopilot', 'where do i start', 'what first', 'order of operations', 'priority', 'prioritise', 'prioritize', 'surplus', 'what should i do first'],
+      reply: 'Start with one month of essentials, then any debt above 10% APR, then the goal. I can sequence the whole thing from your pay, your essentials, the debt and a deadline — one plan, no spreadsheet.',
+      links: [{ label: 'Build a money autopilot plan', href: '/autopilot/' }, { label: 'Why the order matters', href: '/guides/payday-routine.html' }],
+      chips: ['Build my plan']
+    },
+    {
+      id: 'earn', kw: ['pay rise', 'raise', 'salary', 'earn more', 'side hustle', 'side income', 'second job', 'promotion', 'freelance', 'overtime'],
+      reply: 'Cutting costs has a floor; income does not. Ask for a specific number with three evidenced outcomes, or add one small income stream — and check the £1,000 trading allowance before you start.',
+      links: [{ label: 'Guide: earning more in the UK', href: '/guides/earn-more-uk-side-income.html' }, { label: 'The pay-rise script, word for word', href: '/post/pay-rise-script.html' }],
+      chips: ['How do I ask?']
+    },
+    {
+      id: 'challenge', kw: ['challenge', '52 week', 'save 1000', 'save £1000', 'streak', 'no spend', 'save faster'],
+      reply: 'A short challenge makes progress visible. Give me a total and a deadline — “£1,000 in 13 weeks” — and I can point you at the weekly schedule.',
+      links: [{ label: 'Generate a savings challenge', href: '/challenges/' }, { label: 'Blog: save £1,000 in 90 days', href: '/post/save-1000-in-90-days.html' }],
       chips: []
     },
     {
@@ -469,10 +487,12 @@
     budget: 'Does your budget survive payday? I can split your take-home in one question.',
     emergency: 'Quick check: how many months of essentials could your savings cover right now?',
     compound: 'Want to see what time does to your money? Tell me an amount and I’ll show the growth.',
+    autopilot: 'Want your whole plan sequenced — buffer, debt, goal, investing? Give me eight numbers and I’ll build it.',
     trip: 'Planning a trip? Tell me the destination budget and I’ll add a realistic buffer.',
     quickmaths: 'Need a bill split, a discount or a unit price? Ask me and I’ll do the maths.',
     debt: 'Want to know how long your debt will take to clear? I can estimate it in three questions.',
     subscriptions: 'How many subscriptions are you paying for? I can show the yearly total.',
+    challenges: 'How much do you want to save, and by when? A weekly schedule is easier to finish than a monthly intention.',
     pace: 'Several goals competing for the same pay? I can help you choose what to fund first.',
     quiz: 'Six questions, one score. Want to find the weakest part of your money setup?',
     home: 'What are you saving for? I’ll turn it into a monthly amount in three questions.',
@@ -1227,6 +1247,365 @@
           '</div>' +
           '<div class="next-step">Cancel one you would not buy again today, then send the saving to your goal. <a href="/guides/subscription-audit-guide.html">Run the full audit</a>.</div>';
       });
+    },
+
+    autopilot: function (form) {
+      var box = $('[data-result]', form);
+      applyQuery(form);
+
+      function payoff(balance, apr, payment) {
+        var rate = apr / 100 / 12, months = 0, interest = 0, bal = balance;
+        while (bal > 0.01 && months < 720) { var add = bal * rate; interest += add; bal = bal + add - payment; months++; }
+        return { months: months, interest: interest, cleared: bal <= 0.01 };
+      }
+
+      function calc() {
+        var income = readField(form, 'income');
+        var essentials = readField(form, 'essentials');
+        var debt = readField(form, 'debt') || 0;
+        var apr = readField(form, 'apr') || 0;
+        var debtpay = readField(form, 'debtpay') || 0;
+        var saved = readField(form, 'saved') || 0;
+        var target = readField(form, 'target');
+        var months = readField(form, 'months');
+
+        if (!Number.isFinite(income) || income <= 0) return errorBox(box, 'Enter your monthly take-home pay above £0.');
+        if (!Number.isFinite(essentials) || essentials <= 0) return errorBox(box, 'Enter your essential monthly costs — rent or mortgage, bills, food, travel.');
+        if (!Number.isFinite(target) || target <= 0) return errorBox(box, 'Enter what you are saving towards, even roughly.');
+        if (!Number.isFinite(months) || months < 1) return errorBox(box, 'Enter how many months you have until you need the money.');
+        months = Math.round(months);
+
+        var surplus = income - essentials;
+        var bufferMonths = essentials > 0 ? saved / essentials : 0;
+        if (surplus <= 0) {
+          box.className = 'result error';
+          box.innerHTML = '<div class="result-label">The honest answer</div>' +
+            '<div class="result-value" style="font-size:1.35rem;letter-spacing:0">There is no surplus yet</div>' +
+            '<div class="result-meta">Your essentials (' + gbp0(essentials) + ') meet or exceed your take-home pay (' + gbp0(income) + '). No allocation can fix that — the gap has to close first. Two levers: reduce a fixed cost (rent share, energy, a contract) or raise income. Both beat squeezing the food shop another £10.</div>' +
+            '<div class="next-step">Start with the <a href="/guides/budgeting-guide-uk.html">budgeting guide</a>, then look at <a href="/guides/earn-more-uk-side-income.html">ways to raise income</a>. If essentials are 70%+ of pay, this is structural, not a discipline problem.</div>';
+          return;
+        }
+
+        var highApr = apr >= 10;
+        var w = { buffer: 0.20, debt: 0, goal: 0.30, invest: 0.10, life: 0.10 };
+        if (bufferMonths < 1) w.buffer += 0.30;
+        else if (bufferMonths < 3) w.buffer += 0.15;
+        if (highApr && debt > 0) { w.debt = 0.30; w.goal = 0.15; w.invest = 0; }
+        else if (debt > 0) { w.debt = 0.10; }
+        if (months > 60) { w.invest += 0.10; w.goal = 0.15; }
+        var totalW = w.buffer + w.debt + w.goal + w.invest + w.life;
+        Object.keys(w).forEach(function (k) { w[k] = w[k] / totalW; });
+
+        var amt = {};
+        Object.keys(w).forEach(function (k) { amt[k] = surplus * w[k]; });
+
+        var bufferGap = Math.max(0, essentials - saved);
+        var bufferTarget = essentials * 3;
+        var bufferFullGap = Math.max(0, bufferTarget - saved);
+        var bufferMonthsAtPace = amt.buffer > 0 && bufferGap > 0 ? Math.ceil(bufferGap / amt.buffer) : 0;
+        var goalGap = Math.max(0, target - saved);
+        var goalMonthsAtPace = amt.goal > 0 ? Math.ceil(goalGap / amt.goal) : 0;
+
+        var debtPlan = null;
+        if (debt > 0) {
+          var payTotal = debtpay + amt.debt;
+          debtPlan = payTotal > 0 ? payoff(debt, apr, payTotal) : null;
+        }
+
+        var score = 0;
+        score += Math.min(30, (bufferMonths / 3) * 30);
+        score += debt <= 0 ? 25 : Math.max(0, 25 - (debt / (income * 12)) * 100);
+        score += Math.min(25, (surplus / income) * 100 * 0.85);
+        score += saved > 0 ? 10 : 0;
+        score += months > 0 ? 10 : 0;
+        score = Math.max(0, Math.min(100, Math.round(score)));
+
+        var fv10 = 0;
+        if (amt.invest > 0) {
+          var r = 0.05 / 12;
+          for (var i = 0; i < 120; i++) fv10 = fv10 * (1 + r) + amt.invest;
+        }
+
+        var steps = [];
+        steps.push({
+          ico: '🛟', urgent: bufferMonths < 1,
+          title: bufferMonths < 1 ? 'Build the one-month buffer first' : 'Top up the safety net',
+          body: bufferGap > 0
+            ? 'Send ' + gbp(amt.buffer) + ' to a separate easy-access account. ' + gbp0(bufferGap) + ' gets you to one month of essentials' + (bufferMonthsAtPace ? ', about ' + bufferMonthsAtPace + ' month' + (bufferMonthsAtPace === 1 ? '' : 's') + ' away' : '') + '. Keep going to three months (' + gbp0(bufferTarget) + ').'
+            : 'One month is covered. ' + gbp0(bufferFullGap) + ' more reaches a three-month cushion; until then this money stays liquid and boring.',
+          amt: gbp(amt.buffer)
+        });
+        if (debt > 0) {
+          steps.push({
+            ico: highApr ? '🔥' : '💳', urgent: highApr,
+            title: highApr ? 'Overpay the expensive debt' : 'Keep clearing the debt',
+            body: (debtPlan && debtPlan.cleared
+              ? 'Adding ' + gbp(amt.debt) + ' to your ' + gbp0(debtpay) + ' payment clears ' + gbp0(debt) + ' in about ' + debtPlan.months + ' months, costing ' + gbp0(debtPlan.interest) + ' in interest.'
+              : debtPlan
+              ? 'At ' + gbp(debtpay + amt.debt) + ' a month the interest still exceeds the payment, so the balance never falls. The minimum has to rise before an overpayment can help.'
+              : 'Put ' + gbp(amt.debt) + ' towards the balance as an extra payment each month.') +
+              (highApr ? ' At ' + apr + '% APR this is a guaranteed ' + apr + '% return — better than almost any savings rate.' : ' Low-rate debt can run alongside saving.'),
+            amt: gbp(amt.debt)
+          });
+        }
+        steps.push({
+          ico: '🎯', urgent: false,
+          title: 'Fund the goal: ' + esc(new URLSearchParams(location.search).get('label') || 'your target'),
+          body: 'At ' + gbp(amt.goal) + ' a month you reach ' + gbp0(target) + ' in about ' + goalMonthsAtPace + ' months' + (goalMonthsAtPace > months ? ' — that is later than your ' + months + '-month deadline. Stretch the date or raise this amount before you cut the buffer.' : ' — inside your ' + months + '-month deadline.') ,
+          amt: gbp(amt.goal)
+        });
+        if (amt.invest > 0) {
+          steps.push({
+            ico: '📈', urgent: false,
+            title: 'Invest for the long term',
+            body: gbp(amt.invest) + ' a month into a diversified fund inside a Stocks &amp; Shares ISA, only after the buffer and expensive debt are handled. At an illustrative 5% net, that is about ' + gbp0(fv10) + ' after ten years — assumption, not a promise.',
+            amt: gbp(amt.invest)
+          });
+        }
+        steps.push({
+          ico: '🍃', urgent: false,
+          title: 'Spend this without guilt',
+          body: gbp(amt.life) + ' a month is yours. A plan with no breathing room gets abandoned in week three; this line is what makes the other lines survivable.',
+          amt: gbp(amt.life)
+        });
+
+        var proj = saved, points = [saved];
+        var monthlyIntoCash = amt.buffer + amt.goal;
+        for (var m = 1; m <= 12; m++) {
+          proj += monthlyIntoCash;
+          if (m % 3 === 0) points.push(proj);
+        }
+        var maxPoint = Math.max.apply(null, points) || 1;
+        var bars = points.map(function (p, idx) {
+          return '<i class="' + (idx === points.length - 1 ? 'hi' : '') + '" style="height:' + Math.max(8, (p / maxPoint) * 100) + '%" title="' + gbp0(p) + '"></i>';
+        }).join('');
+
+        var done = store.get('ap_done', {});
+        var tasks = [
+          { id: 'so', text: 'Set a standing order for <b>' + gbp(amt.buffer) + '</b> the day after payday' },
+          { id: 'pot', text: 'Open or rename a separate pot: “<b>Buffer</b>” — not “Savings”' },
+          { id: 'debt', text: debt > 0 ? 'Set the debt payment to <b>' + gbp(debtpay + amt.debt) + '</b> a month' : 'Check one fixed bill for a cheaper equivalent' },
+          { id: 'cancel', text: 'Cancel one subscription you would not buy again today' },
+          { id: 'review', text: 'Put a 10-minute money review in the calendar for the 1st' }
+        ];
+        var tasksHtml = tasks.map(function (t) {
+          return '<label class="check"><input type="checkbox" data-ap-task="' + t.id + '"' + (done[t.id] ? ' checked' : '') + '><span>' + t.text + '</span></label>';
+        }).join('');
+        var doneCount = tasks.filter(function (t) { return done[t.id]; }).length;
+
+        box.className = 'result';
+        box.innerHTML =
+          '<div class="result-label">Your monthly surplus, allocated</div>' +
+          '<div class="result-value">' + gbp(surplus) + '<span style="font-size:13px;font-weight:700;color:var(--muted)"> / month</span></div>' +
+          '<div class="result-meta">Money fitness score <strong>' + score + '/100</strong>. The order below follows three rules: protect the basics, kill any debt costing more than saving pays, then fund the goal. Change any number and the whole plan recalculates.</div>' +
+          '<div class="stat-strip">' +
+          '<div><b>' + bufferMonths.toFixed(1) + ' mo</b><span>buffer now</span></div>' +
+          '<div><b>' + goalMonthsAtPace + ' mo</b><span>to your goal</span></div>' +
+          '<div><b>' + gbp0(debt) + '</b><span>debt outstanding</span></div>' +
+          '<div><b>' + gbp0(saved + monthlyIntoCash * 12) + '</b><span>cash in 12 months</span></div>' +
+          '</div>' +
+          '<div class="ap-steps">' + steps.map(function (s) {
+            return '<div class="ap-step' + (s.urgent ? ' urgent' : '') + '"><span class="ap-ico" aria-hidden="true">' + s.ico + '</span><div style="min-width:0"><b>' + s.title + '</b><p>' + s.body + '</p></div><span class="ap-amt">' + s.amt + '</span></div>';
+          }).join('') + '</div>' +
+          '<div class="chart" aria-hidden="true">' + bars + '</div>' +
+          '<div class="chart-legend"><span>Today: ' + gbp0(saved) + '</span><span>12 months: ' + gbp0(saved + monthlyIntoCash * 12) + '</span></div>' +
+          '<div class="mini-note">Cash saved only — excludes debt repayments and any investment growth.</div>' +
+          '<div class="progress-inline" data-ap-progress>' +
+          '<div class="pi-top"><span>This week’s moves</span><span><b data-ap-count>' + doneCount + '</b> of ' + tasks.length + ' done</span></div>' +
+          '<div class="bar"><i style="width:' + Math.round(doneCount / tasks.length * 100) + '%"></i></div>' +
+          '</div>' +
+          '<div class="checklist">' + tasksHtml + '</div>' +
+          '<div class="next-step">Save this plan into the rest of the site: <a href="/savemoney/?target=' + Math.round(target) + '&months=' + months + '&label=' + encodeURIComponent('My goal') + '">open it in the savings calculator</a>, or <a href="/budget/?income=' + Math.round(income) + '">check the budget split</a>.</div>';
+
+        $$('[data-ap-task]', box).forEach(function (cb) {
+          cb.addEventListener('change', function () {
+            var d = store.get('ap_done', {});
+            d[cb.getAttribute('data-ap-task')] = cb.checked;
+            store.set('ap_done', d);
+            var n = $$('[data-ap-task]', box).filter(function (x) { return x.checked; }).length;
+            var count = $('[data-ap-count]', box);
+            var bar = $('[data-ap-progress] .bar i', box);
+            if (count) count.textContent = n;
+            if (bar) bar.style.width = Math.round(n / tasks.length * 100) + '%';
+            if (n === tasks.length) toast('Every move done. That is how the plan becomes real.');
+          });
+        });
+      }
+      bindSubmit(form, calc);
+      calc();
+    },
+
+    invest: function (form) {
+      var box = $('[data-result]', form);
+      applyQuery(form);
+
+      function fv(monthly, existing, years, ratePct) {
+        var r = ratePct / 100 / 12, months = Math.round(years * 12), total = existing;
+        for (var i = 0; i < months; i++) total = total * (1 + r) + monthly;
+        return total;
+      }
+
+      function calc() {
+        var monthly = readField(form, 'monthly');
+        var existing = readField(form, 'existing') || 0;
+        var years = readField(form, 'years');
+        var fee = readField(form, 'fee');
+        var answers = ['q1', 'q2', 'q3', 'q4', 'q5'].map(function (n) {
+          var el = form.querySelector('[name="' + n + '"]');
+          return el ? Number(el.value) : 0;
+        });
+        if (!Number.isFinite(monthly) || monthly < 0) return errorBox(box, 'Enter a monthly amount of £0 or more.');
+        if (!Number.isFinite(years) || years < 1) return errorBox(box, 'Enter a time horizon of at least one year.');
+        if (!Number.isFinite(fee) || fee < 0 || fee > 3) return errorBox(box, 'Enter total annual costs between 0% and 3% — platform plus fund charges.');
+        years = Math.min(45, Math.round(years));
+
+        var riskScore = answers.reduce(function (s, v) { return s + (Number.isFinite(v) ? v : 0); }, 0);
+        var profile, alloc, mid;
+        if (riskScore <= 5) { profile = 'Cautious'; mid = 3.5; alloc = { eq: 30, bd: 45, cash: 25 }; }
+        else if (riskScore <= 10) { profile = 'Balanced'; mid = 5.0; alloc = { eq: 60, bd: 30, cash: 10 }; }
+        else { profile = 'Growth'; mid = 6.5; alloc = { eq: 85, bd: 12, cash: 3 }; }
+
+        var netMid = Math.max(0, mid - fee);
+        var low = Math.max(0, mid - 2.5 - fee), high = mid + 2.5 - fee;
+        var midVal = fv(monthly, existing, years, netMid);
+        var lowVal = fv(monthly, existing, years, low);
+        var highVal = fv(monthly, existing, years, high);
+        var contributed = existing + monthly * 12 * years;
+
+        var cheap = fv(monthly, existing, years, Math.max(0, mid - 0.2));
+        var dear = fv(monthly, existing, years, Math.max(0, mid - 1.2));
+        var feeCost = dear - cheap;
+
+        var horizonAdvice = years < 5
+          ? 'Under five years, this money probably belongs in cash. A market fall near the deadline is not a risk you can wait out.'
+          : years < 10
+          ? 'Five to ten years is a workable investing horizon, but keep the emergency fund and any spending within two years out of it.'
+          : 'A horizon this long is where investing makes the most sense — time is doing more work than the contribution.';
+
+        var eq = gbp0(monthly * alloc.eq / 100), bd = gbp0(monthly * alloc.bd / 100), cash = gbp0(monthly * alloc.cash / 100);
+
+        box.className = 'result';
+        box.innerHTML =
+          '<div class="result-label">Your investor profile</div>' +
+          '<div class="result-value">' + profile + '</div>' +
+          '<div class="result-meta">Risk score ' + riskScore + '/15. Illustrative expected return for this mix: about ' + mid + '% a year before costs, ' + netMid.toFixed(1) + '% after ' + fee + '% of charges. ' + horizonAdvice + '</div>' +
+          '<div class="alloc">' +
+          '<div class="alloc-bar" aria-label="Suggested asset mix"><i class="eq" style="width:' + alloc.eq + '%"></i><i class="bd" style="width:' + alloc.bd + '%"></i><i class="cash" style="width:' + alloc.cash + '%"></i></div>' +
+          '<div class="alloc-legend">' +
+          '<div class="alloc-key"><i style="background:#4be08e"></i>Global shares<b>' + alloc.eq + '% · ' + eq + '/mo</b></div>' +
+          '<div class="alloc-key"><i style="background:#7fb7ff"></i>Bonds / gilts<b>' + alloc.bd + '% · ' + bd + '/mo</b></div>' +
+          '<div class="alloc-key"><i style="background:#ffca7a"></i>Cash buffer<b>' + alloc.cash + '% · ' + cash + '/mo</b></div>' +
+          '</div></div>' +
+          '<div class="result-grid">' +
+          '<div class="result-stat"><b>' + gbp0(lowVal) + '</b><span>pessimistic</span></div>' +
+          '<div class="result-stat"><b>' + gbp0(midVal) + '</b><span>middle estimate</span></div>' +
+          '<div class="result-stat"><b>' + gbp0(highVal) + '</b><span>optimistic</span></div>' +
+          '</div>' +
+          '<div class="result-meta" style="margin-top:10px">You put in ' + gbp0(contributed) + '. The spread between the three columns is volatility, not a menu — any single year can land outside it.</div>' +
+          '<div class="next-step"><strong>Cost check:</strong> over ' + years + ' years at ' + mid + '%, paying 0.2% instead of 1.2% leaves about <strong>' + gbp0(feeCost) + '</strong> more in your pocket. At your ' + fee + '% it is a ' + (fee <= 0.45 ? 'lean' : fee <= 1 ? 'mid-range' : 'expensive') + ' plan. Read <a href="/guides/investment-fees-and-tax-uk.html">what the fees actually cost</a>.</div>' +
+          '<div class="next-step">Next step: confirm the <a href="/guides/emergency-fund-uk.html">emergency fund</a> and any 10%+ debt are handled, then compare <a href="/guides/isa-vs-savings-account-uk.html">ISA wrappers</a> before opening an account.</div>';
+      }
+      bindSubmit(form, calc);
+      calc();
+    },
+
+    challenge: function (form) {
+      var box = $('[data-result]', form);
+
+      function build(target, weeks, style) {
+        var weights = [], i;
+        for (i = 1; i <= weeks; i++) {
+          if (style === 'ladder') weights.push(i);
+          else if (style === 'no-spend') weights.push(i % 2 === 1 ? 1.4 : 0.6);
+          else if (style === 'roundup') weights.push([1, 1.6, 1.2, 2][(i - 1) % 4]);
+          else weights.push(1);
+        }
+        var weightSum = weights.reduce(function (s, x) { return s + x; }, 0);
+        var amounts = weights.map(function (x) { return Math.round((target * x / weightSum) * 100) / 100; });
+        var sum = amounts.reduce(function (s, x) { return s + x; }, 0);
+        amounts[weeks - 1] = Math.round((amounts[weeks - 1] + target - sum) * 100) / 100;
+        return amounts;
+      }
+
+      function calc() {
+        var target = readField(form, 'target');
+        var weeks = readField(form, 'weeks');
+        var styleEl = form.querySelector('[name="style"]');
+        var style = styleEl ? styleEl.value : 'steady';
+        if (!Number.isFinite(target) || target <= 0) return errorBox(box, 'Enter a challenge total above £0.');
+        if (!Number.isFinite(weeks) || weeks < 4 || weeks > 52) return errorBox(box, 'Choose between 4 and 52 weeks.');
+        weeks = Math.round(weeks);
+
+        var amounts = build(target, weeks, style);
+        var key = 'c' + Math.round(target) + '-' + weeks + '-' + style;
+        var savedState = store.get('challenge_' + key, []);
+        var doneMap = {};
+        savedState.forEach(function (n) { doneMap[n] = true; });
+        var savedSoFar = amounts.reduce(function (s, a, idx) { return s + (doneMap[idx] ? a : 0); }, 0);
+        var doneCount = amounts.filter(function (a, idx) { return doneMap[idx]; }).length;
+
+        var label = { steady: 'Steady weekly amount', ladder: 'Ladder (grows each week)', 'no-spend': 'Alternating spend / no-spend weeks', roundup: 'Four-week round-up cycle' }[style];
+        var start = new Date();
+        var daysTo = Math.ceil((new Date(start.getTime() + weeks * 7 * 86400000) - start) / 86400000);
+
+        var cells = amounts.map(function (a, idx) {
+          var amount = gbp(a).replace('.00', '');
+          return '<button type="button" class="week' + (doneMap[idx] ? ' done' : '') + '" data-week="' + idx + '" aria-pressed="' + (doneMap[idx] ? 'true' : 'false') + '" aria-label="Week ' + (idx + 1) + ', ' + amount + (doneMap[idx] ? ', saved' : ', not saved yet') + '"><b>' + amount + '</b>wk ' + (idx + 1) + '</button>';
+        }).join('');
+
+        box.className = 'result';
+        box.innerHTML =
+          '<div class="result-label">Your challenge</div>' +
+          '<div class="result-value">' + gbp0(target) + ' in ' + weeks + ' weeks</div>' +
+          '<div class="result-meta">' + label + '. That is ' + gbp0(target / weeks) + ' a week on average and ' + gbp0(target / (weeks / 4.345)) + ' a month set aside. Finishing on schedule takes ' + weeks + ' weeks from today.</div>' +
+          '<div class="result-grid">' +
+          '<div class="result-stat"><b>' + gbp(amounts[0]) + '</b><span>week one</span></div>' +
+          '<div class="result-stat"><b>' + gbp(amounts[weeks - 1]) + '</b><span>final week</span></div>' +
+          '<div class="result-stat"><b>' + gbp(savedSoFar) + '</b><span>ticked off</span></div>' +
+          '</div>' +
+          '<div class="week-grid" role="group" aria-label="Weekly amounts — tick each week once the money has moved">' + cells + '</div>' +
+          '<div class="progress-inline"><div class="pi-top"><span>Saved so far</span><span><b data-ch-saved>' + gbp(savedSoFar) + '</b> · ' + doneCount + '/' + weeks + ' weeks</span></div><div class="bar"><i data-ch-bar style="width:' + Math.round(savedSoFar / target * 100) + '%"></i></div></div>' +
+          '<div class="week-actions"><button class="btn secondary sm" type="button" data-ch-next>✓ Tick the next week</button><button class="btn ghost sm" type="button" data-ch-reset>Reset tracker</button></div>' +
+          '<div class="next-step">Tap the week cells as you go — progress is stored on this device. Keep the money in a separate pot so the streak means something. <a href="/guides/no-spend-challenge.html">Read the no-spend rules</a> or <a href="/autopilot/">build the monthly plan</a>.</div>';
+
+        function persist() {
+          var done = [];
+          $$('.week', box).forEach(function (el) {
+            var idx = Number(el.getAttribute('data-week'));
+            var isDone = el.classList.contains('done');
+            el.setAttribute('aria-pressed', isDone ? 'true' : 'false');
+            el.setAttribute('aria-label', 'Week ' + (idx + 1) + ', ' + gbp(amounts[idx]).replace('.00', '') + (isDone ? ', saved' : ', not saved yet'));
+            if (isDone) done.push(idx);
+          });
+          done.sort(function (a, b) { return a - b; });
+          store.set('challenge_' + key, done);
+          var totalSaved = amounts.reduce(function (s, a, idx) { return s + (done.indexOf(idx) !== -1 ? a : 0); }, 0);
+          var savedEl = $('[data-ch-saved]', box);
+          var bar = $('[data-ch-bar]', box);
+          if (savedEl) savedEl.textContent = gbp(totalSaved);
+          if (bar) bar.style.width = Math.round(totalSaved / target * 100) + '%';
+          if (done.length === weeks) toast('Challenge complete — ' + gbp0(target) + ' saved. Pick a harder one.');
+        }
+
+        $$('.week', box).forEach(function (cell) {
+          cell.addEventListener('click', function () {
+            cell.classList.toggle('done');
+            persist();
+          });
+        });
+        var next = $('[data-ch-next]', box);
+        if (next) next.addEventListener('click', function () {
+          var first = $$('.week', box).filter(function (el) { return !el.classList.contains('done'); })[0];
+          if (first) { first.classList.add('done'); persist(); first.focus(); }
+        });
+        var reset = $('[data-ch-reset]', box);
+        if (reset) reset.addEventListener('click', function () {
+          $$('.week', box).forEach(function (el) { el.classList.remove('done'); });
+          persist();
+        });
+      }
+      bindSubmit(form, calc);
+      calc();
     }
   };
 
@@ -1337,6 +1716,31 @@
     else filter('');
   }
 
+  /* ---------- persistent article checklists ---------- */
+  function setupChecklists() {
+    $$('[data-checklist]').forEach(function (root) {
+      var key = 'checks_' + (root.getAttribute('data-checklist') || location.pathname);
+      var boxes = $$('input[data-check]', root);
+      if (!boxes.length) return;
+      var done = store.get(key, []);
+      var bar = $('[data-check-bar]', root);
+      var count = $('[data-check-count]', root);
+      function refresh() {
+        var n = boxes.filter(function (b) { return b.checked; }).length;
+        if (bar) bar.style.width = Math.round(n / boxes.length * 100) + '%';
+        if (count) count.textContent = n + ' of ' + boxes.length + ' done';
+        var list = boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.getAttribute('data-check'); });
+        store.set(key, list);
+        if (n === boxes.length) toast('All done. That is a real change, not a read.');
+      }
+      boxes.forEach(function (box) {
+        box.checked = done.indexOf(box.getAttribute('data-check')) !== -1;
+        box.addEventListener('change', refresh);
+      });
+      refresh();
+    });
+  }
+
   /* ---------- contact ---------- */
   function setupContact() {
     var form = $('[data-contact]');
@@ -1364,6 +1768,124 @@
     });
   }
 
+  /* ---------- contextual nudges (Penny's tip pop-ups) ---------- */
+  var NUDGES = [
+    { tags: ['home', 'general'], title: 'Your saving rate beats your return', body: 'Early on, £50 more saved each month moves the finish line further than chasing an extra 1% of growth. Raise the transfer before you shop around for a better rate.', href: '/savemoney/', cta: 'Set the amount' },
+    { tags: ['home', 'general'], title: 'The 1% rule for pay rises', body: 'When your pay goes up, add one percentage point to your saving rate in the same week. On £2,400 take-home that is £24 a month — £288 a year you never notice leaving.', href: '/guides/payday-routine.html', cta: 'The payday routine' },
+    { tags: ['home', 'general'], title: '£5 a day is £1,825 a year', body: 'Small daily habits are annual numbers in disguise. Check what your “just a coffee” pattern actually costs before you decide it is too small to matter.', href: '/budget/', cta: 'Run your budget' },
+    { tags: ['home', 'general'], title: 'Name the pot', body: 'Money in an account called “Savings 2” gets raided. Money in one called “Car MOT — March” does not. Naming is free and it works.', href: '/guides/sinking-funds-explained.html', cta: 'How sinking funds work' },
+    { tags: ['home', 'general'], title: 'Annual costs break more budgets than weekly ones', body: 'Insurance, MOT, birthdays and Christmas are predictable. Divide each by 12 and move that amount monthly so the bill never lands on a normal week.', href: '/guides/budgeting-guide-uk.html', cta: 'Build the budget' },
+    { tags: ['tools', 'autopilot'], title: 'The buffer is not the goal', body: 'One month of essential costs in cash is what stops a car repair becoming a credit card balance. It is the least exciting line in the plan and the one that protects all the others.', href: '/emergency-fund/', cta: 'Size your buffer' },
+    { tags: ['tools', 'autopilot'], title: 'Essentials first, honestly', body: 'If essentials take 70% of take-home, no spreadsheet fixes it. That is a housing, transport or income problem — use the income guide instead of shaving £5 off groceries.', href: '/guides/earn-more-uk-side-income.html', cta: 'Raise the income' },
+    { tags: ['tools'], title: 'Round the answer up, not down', body: 'If a calculation says £163.40 a month, set £170. The overshoot finishes the goal early and gives you slack for the month that goes wrong.', href: '/savings-pace/', cta: 'Check your pace' },
+    { tags: ['tools', 'challenges'], title: 'Transfer first, tick second', body: 'A tick without a transfer is a diary entry. Move the money the same day, then press the week — the streak should cost you something.', href: '/challenges/', cta: 'Open the challenge' },
+    { tags: ['challenges'], title: 'Choose the ladder if you have quit before', body: 'Week one at £10.99 is not about the money; it is about not failing on day three. Momentum is cheaper to buy early than to rebuild late.', href: '/post/save-1000-in-90-days.html', cta: 'Read the 13-week plan' },
+    { tags: ['challenges'], title: 'Decide the miss rule now', body: 'Do not double up after a missed week. Add it to the final week or extend by seven days. Doubling up turns one bad week into a debt to yourself.', href: '/guides/no-spend-challenge.html', cta: 'No-spend rules' },
+    { tags: ['invest'], title: 'Fees are the only certain number', body: 'Returns are a guess; charges are a fact. On £10,000 plus £200 a month over 20 years, paying 0.2% instead of 1.2% leaves roughly £15,600 more in the pot.', href: '/guides/investment-fees-and-tax-uk.html', cta: 'See the fee maths' },
+    { tags: ['invest'], title: 'Money you need soon should not wobble', body: 'Under five years, cash is usually the right home. Volatility is only a problem when the deadline is close enough that you cannot wait for a recovery.', href: '/guides/isa-vs-savings-account-uk.html', cta: 'Pick the wrapper' },
+    { tags: ['guides'], title: 'Read one guide, move one number', body: 'Knowledge does not compound; transfers do. Pick the single change you can make on payday and ignore the other nine things this page just taught you.', href: '/guides/payday-routine.html', cta: 'The 10-minute routine' },
+    { tags: ['guides'], title: 'Unit price is the only price that matters', body: 'Bigger packs are not automatically cheaper. Compare price per 100g or per wash, and be suspicious of the “was” price on the shelf edge.', href: '/guides/save-money-on-groceries.html', cta: 'Cut the grocery bill' },
+    { tags: ['guides', 'post'], title: 'The £50 three-day rule', body: 'Anything non-essential over £50 waits 72 hours. Most of it stops looking necessary. The rule costs nothing and does not require willpower in the moment.', href: '/guides/subscription-audit-guide.html', cta: 'Audit the subscriptions' },
+    { tags: ['post'], title: 'A budget is a prediction, not a punishment', body: 'When a month goes over, the useful question is which line was wrong — not which line to feel bad about. Fix the forecast, keep the habit.', href: '/budget/', cta: 'Adjust the budget' },
+    { tags: ['general'], title: 'Check the annual cost, not the monthly one', body: '£9.99 a month is £119.88 a year, and that is before the price rise in month seven. Annual numbers are the ones that change decisions.', href: '/subscriptions/', cta: 'Subscription audit' },
+    { tags: ['general'], title: 'Save the raise before you feel it', body: 'Lifestyle expands to fill the pay rise within about two months. Move the extra on the first payday and it never becomes normal spending.', href: '/autopilot/', cta: 'Rebuild the plan' },
+    { tags: ['general'], title: 'One month ahead is the real target', body: 'Being a month ahead turns every bill from an emergency into a diary entry. It is the cheapest form of financial calm available.', href: '/emergency-fund/', cta: 'Check the buffer' }
+  ];
+
+  function nudgeSection() {
+    var path = location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '').replace(/\/$/, '');
+    if (!path) return 'home';
+    if (path.indexOf('/post/') === 0) return 'post';
+    if (path.indexOf('/guides/') === 0) return 'guides';
+    if (path === '/challenges') return 'challenges';
+    if (path === '/autopilot' || path === '/invest') return path.slice(1);
+    if (['/budget', '/savemoney', '/emergency-fund', '/compound-interest', '/subscriptions', '/debt-payoff', '/savings-pace', '/trip-budget', '/quickmaths', '/tools'].indexOf(path) !== -1) return 'tools';
+    return document.body.getAttribute('data-penny-context') || 'general';
+  }
+
+  function setupNudges() {
+    if (document.querySelector('.nudge')) return;
+    // The Ask Penny page is a full chat surface with its own input — no overlay there.
+    if (/(^|\/)assistant(\.html)?\/?$/.test(location.pathname)) return;
+    var section = nudgeSection();
+    var pool = NUDGES.filter(function (n) { return n.tags.indexOf(section) !== -1; });
+    if (!pool.length) pool = NUDGES.filter(function (n) { return n.tags.indexOf('general') !== -1; });
+    if (!pool.length) return;
+
+    // One dismissal per section per day, not one for the whole site.
+    var today = dateKey();
+    var seen = store.get('nudgeSeen', {});
+    if (!seen || typeof seen !== 'object' || Array.isArray(seen)) seen = {};
+    Object.keys(seen).forEach(function (k) { if (seen[k] !== today) delete seen[k]; });
+    if (seen[section] === today) return;
+
+    var el = document.createElement('aside');
+    el.className = 'nudge';
+    el.setAttribute('aria-label', 'Money tip from Penny');
+    document.body.appendChild(el);
+
+    var i = Math.floor(Date.now() / 86400000) % pool.length;
+    var dismissed = false;
+
+    function paint() {
+      var n = pool[i % pool.length];
+      el.innerHTML = '<button class="nudge-close" type="button" data-nudge-close aria-label="Dismiss this tip">✕</button>' +
+        '<div class="nudge-kicker"><i aria-hidden="true"></i>Penny’s nudge<span>' + ((i % pool.length) + 1) + ' of ' + pool.length + '</span></div>' +
+        '<h3>' + esc(n.title) + '</h3>' +
+        '<p>' + esc(n.body) + '</p>' +
+        '<div class="nudge-actions"><a class="btn primary sm" href="' + n.href + '">' + esc(n.cta) + '</a>' +
+        (pool.length > 1 ? '<button class="btn ghost sm" type="button" data-nudge-next>Another tip</button>' : '') + '</div>';
+    }
+
+    function hide() {
+      dismissed = true;
+      el.classList.remove('show');
+      document.body.classList.remove('nudge-visible');
+      seen[section] = today;
+      store.set('nudgeSeen', seen);
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 260);
+    }
+
+    function clearOverlay() {
+      el.classList.remove('show');
+      document.body.classList.remove('nudge-visible');
+    }
+
+    function pennyBusy() {
+      if (document.querySelector('.penny-panel.open')) return true;
+      var active = document.activeElement;
+      return !!(active && active.closest && active.closest('.penny-input, .penny-panel'));
+    }
+
+    function show() {
+      if (dismissed) return;
+      if (pennyBusy()) { timer = setTimeout(show, 5000); return; }
+      el.classList.add('show');
+      document.body.classList.add('nudge-visible');
+    }
+
+    paint();
+    var timer = setTimeout(show, 6500);
+
+    // Never cover the chat input: hide the tip when Penny is opened or focused.
+    document.addEventListener('focusin', function (e) {
+      if (e.target.closest && e.target.closest('.penny-input, .penny-panel')) clearOverlay();
+    });
+    document.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('[data-open-penny], .penny-fab')) clearOverlay();
+    });
+
+    el.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('button') : null;
+      if (!btn) return;
+      if (btn.hasAttribute('data-nudge-close')) hide();
+      else if (btn.hasAttribute('data-nudge-next')) { i += 1; paint(); el.classList.add('show'); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && el.classList.contains('show')) hide();
+    });
+  }
+
   /* ---------- init ---------- */
   function init() {
     setupNav();
@@ -1375,7 +1897,9 @@
     setupTools();
     setupQuiz();
     setupGlossary();
+    setupChecklists();
     setupContact();
+    setupNudges();
     $$('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
