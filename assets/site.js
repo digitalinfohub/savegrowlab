@@ -363,7 +363,7 @@
     },
     {
       id: 'privacy', kw: ['privacy', 'data', 'cookie', 'tracking', 'safe', 'store my'],
-      reply: 'No account, no upload: calculator numbers never leave your device. Your saved plan and streak live in your browser’s local storage, and you can clear them any time. Adverts are served by Adsterra, which sets its own cookies.',
+      reply: 'No account, no upload: calculator numbers never leave your device. Your saved plan and streak live in your browser’s local storage, and you can clear them any time. Adverts are served by Google AdSense, and they only load if you accept advertising cookies in the banner.',
       links: [{ label: 'Read the privacy policy', href: '/privacy-policy.html' }],
       chips: []
     },
