@@ -1,7 +1,8 @@
 /* SaveGrow Lab service worker — offline shell + fresh-first pages */
-const CACHE = 'sgl-v6';
+const CACHE = 'sgl-v7';
 const CORE = [
   '/', '/tools/', '/guides/', '/blog/', '/autopilot/', '/invest/', '/challenges/', '/savemoney/', '/budget/',
+  '/tools/energy-cost/', '/tools/mortgage-overpayment/',
   '/assets/site.css', '/assets/site.js', '/assets/ads.js', '/assets/SGLOGO.png',
   '/assets/icons/icon-192.png', '/assets/icons/icon-512.png', '/assets/qr-home.png'
 ];

@@ -941,6 +941,78 @@
       calc();
     },
 
+    energy: function (form) {
+      var box = $('[data-result]', form);
+      applyQuery(form);
+      function calc() {
+        var elec = readField(form, 'elec') || 0;
+        var gas = readField(form, 'gas') || 0;
+        var elecRate = readField(form, 'elecRate');
+        var gasRate = readField(form, 'gasRate');
+        var standing = readField(form, 'standing');
+        var rise = readField(form, 'rise') || 0;
+        if (!Number.isFinite(elec) || elec < 0 || !Number.isFinite(gas) || gas < 0) return errorBox(box, 'Enter your monthly usage in kWh — 0 is fine for a fuel you do not use.');
+        if (!Number.isFinite(elecRate) || !Number.isFinite(gasRate) || !Number.isFinite(standing)) return errorBox(box, 'Enter your unit rates and standing charge in pence.');
+        var days = 365 / 12;
+        var usage = (elec * elecRate + gas * gasRate) / 100;
+        var fixed = standing / 100 * days;
+        var month = (usage + fixed) * 1.05;
+        var year = month * 12;
+        var riseCost = year * rise / 100;
+        headingText(box, 'Your energy costs about', gbp0(month) + ' a month',
+          'That is ' + gbp0(year) + ' a year including 5% VAT. Usage adds ' + gbp0(usage) + ' a month and the standing charge adds ' + gbp0(fixed) + '.' +
+          (rise > 0 ? ' A ' + rise + '% price rise would add about ' + gbp0(riseCost) + ' a year.' : ''),
+          [stat('Monthly', gbp0(month)), stat('Annual', gbp0(year)), stat('Per day', gbp0(month / days))],
+          'Standing charges are half the comparison when you switch — see <a href="/guides/cut-energy-bills-uk.html">how to cut your energy bills</a>.');
+      }
+      bindSubmit(form, calc);
+      calc();
+    },
+
+    overpayment: function (form) {
+      var box = $('[data-result]', form);
+      applyQuery(form);
+      function calc() {
+        var balance = readField(form, 'balance');
+        var rate = readField(form, 'rate');
+        var years = readField(form, 'years');
+        var extra = readField(form, 'extra') || 0;
+        if (!Number.isFinite(balance) || balance <= 0) return errorBox(box, 'Enter the mortgage balance you still owe.');
+        if (!Number.isFinite(rate) || rate < 0) return errorBox(box, 'Enter an interest rate of 0% or more.');
+        if (!Number.isFinite(years) || years < 1) return errorBox(box, 'Enter the years left on the term (at least 1).');
+        years = Math.min(40, years);
+        var r = rate / 100 / 12;
+        var n = Math.round(years * 12);
+        var payment = r > 0 ? balance * r / (1 - Math.pow(1 + r, -n)) : balance / n;
+        function run(extraPay) {
+          var b = balance, months = 0, interest = 0;
+          while (b > 0.005 && months < 1200) {
+            var charged = b * r;
+            interest += charged;
+            b = b + charged - Math.min(payment + extraPay, b + charged);
+            months++;
+          }
+          return { months: months, interest: interest };
+        }
+        var base = run(0);
+        if (extra <= 0) {
+          headingText(box, 'Your payment is', gbp(payment), 'Over ' + n + ' months you would pay about ' + gbp0(base.interest) + ' in interest at ' + rate + '%. Add a monthly overpayment to see what it removes.',
+            [stat('Payment', gbp(payment)), stat('Balance', gbp0(balance)), stat('Interest', gbp0(base.interest))],
+            'Before overpaying, check your annual allowance in the <a href="/guides/mortgage-overpayments-uk.html">overpayment guide</a>.');
+          return;
+        }
+        var withExtra = run(extra);
+        var savedInterest = Math.max(0, base.interest - withExtra.interest);
+        var savedMonths = Math.max(0, base.months - withExtra.months);
+        headingText(box, 'Overpaying ' + gbp0(extra) + ' a month saves', gbp0(savedInterest),
+          'You would clear the mortgage ' + savedMonths + ' months earlier — about ' + (savedMonths / 12).toFixed(1) + ' years — and pay ' + gbp0(withExtra.interest) + ' in interest instead of ' + gbp0(base.interest) + ' at ' + rate + '%.',
+          [stat('Interest saved', gbp0(savedInterest)), stat('Months saved', String(savedMonths)), stat('New term', (withExtra.months / 12).toFixed(1) + ' yrs')],
+          'Check the early repayment charge before paying extra — <a href="/guides/mortgage-overpayments-uk.html">the overpayment guide</a> explains the allowance.');
+      }
+      bindSubmit(form, calc);
+      calc();
+    },
+
     compound: function (form) {
       var box = $('[data-result]', form);
       var tabs = $$('[data-mode]', form);
