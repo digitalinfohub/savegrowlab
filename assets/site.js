@@ -1837,8 +1837,11 @@
         (pool.length > 1 ? '<button class="btn ghost sm" type="button" data-nudge-next>Another tip</button>' : '') + '</div>';
     }
 
+    var autoClose;
+
     function hide() {
       dismissed = true;
+      clearTimeout(autoClose);
       el.classList.remove('show');
       document.body.classList.remove('nudge-visible');
       seen[section] = today;
@@ -1846,7 +1849,10 @@
       setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 260);
     }
 
+    // Timed exit is not a dismissal: the section stays unseen, so the tip can
+    // appear again on a later visit, and the Ask Penny launcher comes back.
     function clearOverlay() {
+      clearTimeout(autoClose);
       el.classList.remove('show');
       document.body.classList.remove('nudge-visible');
     }
@@ -1862,6 +1868,8 @@
       if (pennyBusy()) { timer = setTimeout(show, 5000); return; }
       el.classList.add('show');
       document.body.classList.add('nudge-visible');
+      clearTimeout(autoClose);
+      autoClose = setTimeout(clearOverlay, 20000);
     }
 
     paint();
@@ -1879,7 +1887,7 @@
       var btn = e.target.closest ? e.target.closest('button') : null;
       if (!btn) return;
       if (btn.hasAttribute('data-nudge-close')) hide();
-      else if (btn.hasAttribute('data-nudge-next')) { i += 1; paint(); el.classList.add('show'); }
+      else if (btn.hasAttribute('data-nudge-next')) { i += 1; paint(); show(); }
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && el.classList.contains('show')) hide();
